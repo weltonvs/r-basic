@@ -396,3 +396,74 @@ acos(-8)
 ## [1] NaN
 ```
 
+## Números en coma flotante
+
+Código |  Función                                 
+-------|--------------------
+```print(x,n)``` | Muestra las $n$ cifras significativa del número $x$
+```round(x,n)``` | Redondea a $n$ cifras significativas un resultado o vector numérico $x$
+```floor(x)``` | $\lfloor x\rfloor$, parte entera por defecto de $x$
+```ceiling(x)``` | $\lceil x\rceil$, parte entera por exceso de $x$
+```trunc(x)``` | Parte entera de $x$, eliminando la parte decimal
+
+#### Ejemplos:
+1. Quiero calcular $\sqrt{2}$
+
+```r
+sqrt(2)
+```
+
+```
+## [1] 1.414214
+```
+2. Quero calcular $\sqrt{2}$, pero con 10 cifras significativas
+
+```r
+print(sqrt(2),10)
+```
+
+```
+## [1] 1.414213562
+```
+
+3. Quero calcular $\sqrt{2}$, pero redondear a 3 cifras significativas
+
+```r
+round(sqrt(2),3)
+```
+
+```
+## [1] 1.414
+```
+
+4. Quero calcular $\sqrt{2}$, pero redondear hacia abajo (suelo)
+
+```r
+floor(sqrt(2))
+```
+
+```
+## [1] 1
+```
+
+
+5. Quero calcular $\sqrt{2}$, pero redondear hacia arriba (techo)
+
+```r
+ceiling(sqrt(2))
+```
+
+```
+## [1] 2
+```
+
+6. Quero calcular $\sqrt{2}$, pero redondear con la función trunc
+
+```r
+trunc(sqrt(2))
+```
+
+```
+## [1] 1
+```
+

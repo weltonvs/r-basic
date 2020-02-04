@@ -583,6 +583,76 @@ acos(-8)</code></pre>
 <pre><code>## [1] NaN</code></pre>
 </div>
 </div>
+<div id="números-en-coma-flotante" class="section level2">
+<h2>Números en coma flotante</h2>
+<table>
+<colgroup>
+<col width="25%"></col>
+<col width="74%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Código</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>print(x,n)</code></td>
+<td>Muestra las <span class="math inline">\(n\)</span> cifras significativa del número <span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="even">
+<td><code>round(x,n)</code></td>
+<td>Redondea a <span class="math inline">\(n\)</span> cifras significativas un resultado o vector numérico <span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>floor(x)</code></td>
+<td><span class="math inline">\(\lfloor x\rfloor\)</span>, parte entera por defecto de <span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="even">
+<td><code>ceiling(x)</code></td>
+<td><span class="math inline">\(\lceil x\rceil\)</span>, parte entera por exceso de <span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>trunc(x)</code></td>
+<td>Parte entera de <span class="math inline">\(x\)</span>, eliminando la parte decimal</td>
+</tr>
+</tbody>
+</table>
+<div id="ejemplos" class="section level4">
+<h4>Ejemplos:</h4>
+<ol style="list-style-type: decimal">
+<li>Quiero calcular <span class="math inline">\(\sqrt{2}\)</span></li>
+</ol>
+<pre class="r"><code>sqrt(2)</code></pre>
+<pre><code>## [1] 1.414214</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Quero calcular <span class="math inline">\(\sqrt{2}\)</span>, pero con 10 cifras significativas</li>
+</ol>
+<pre class="r"><code>print(sqrt(2),10)</code></pre>
+<pre><code>## [1] 1.414213562</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Quero calcular <span class="math inline">\(\sqrt{2}\)</span>, pero redondear a 3 cifras significativas</li>
+</ol>
+<pre class="r"><code>round(sqrt(2),3)</code></pre>
+<pre><code>## [1] 1.414</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Quero calcular <span class="math inline">\(\sqrt{2}\)</span>, pero redondear hacia abajo (suelo)</li>
+</ol>
+<pre class="r"><code>floor(sqrt(2))</code></pre>
+<pre><code>## [1] 1</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Quero calcular <span class="math inline">\(\sqrt{2}\)</span>, pero redondear hacia arriba (techo)</li>
+</ol>
+<pre class="r"><code>ceiling(sqrt(2))</code></pre>
+<pre><code>## [1] 2</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Quero calcular <span class="math inline">\(\sqrt{2}\)</span>, pero redondear con la función trunc</li>
+</ol>
+<pre class="r"><code>trunc(sqrt(2))</code></pre>
+<pre><code>## [1] 1</code></pre>
+</div>
+</div>
 </div>
 
 
