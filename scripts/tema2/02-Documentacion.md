@@ -3,14 +3,11 @@ title: "Documentación de Texto"
 author: "Curso de Estadística Descriptiva"
 date: "21/12/2018"
 output:
-  pdf_document: default
   html_document: 
     keep_md: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 # Título 1
 
