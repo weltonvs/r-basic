@@ -2,18 +2,16 @@
 title: "Tema 2 - Documentación con R Markdown"
 author: "Juan Gabriel Gomila & María Santos"
 output:
-  ioslides_presentation: 
+  ioslides_presentation:
     css: JB_style.css
+    keep_md: yes
     logo: Imgs/LogoCurso.png
     widescreen: yes
   slidy_presentation: default
   beamer_presentation: default
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
-```
+
 
 
 # Introducción 
@@ -379,17 +377,18 @@ La función `text{}` nos permite introducir texto en fórmulas matemáticas.
 Los bloques de código de R dentro de un documento R Markdown se indican de la manera siguiente
 
 <div class = "r-code">
-`r ''` ```{r}
+ ```{r}
 
 ` x = 1+1`
 
 ` x`
 
-`r ''` ```</div>
+ ```</div>
 
 que resulta en
 
-```{r, eval = FALSE, comment = NA}
+
+```r
 x = 1+1
 x
 ```
@@ -400,28 +399,28 @@ Hay diversas opciones de crear un bloque de código de R:
 
 - Ir al menú desplegable de "Chunks" y seleccionar el de R
 - Introducir manualmente
-- Alt + Command + I (para Mac) o Ctrl + Alt + I (para Windows)
+- Alt + Command + I (para Mac) o Alt + Command + I (para Windows)
 
 ## Chunks de R
 
 A los chunks se les puede poner etiqueta, para así localizarlos de manera más fácil. Por ejemplo
 
 <div class = "r-code">
-`r ''` ```{r PrimerChunk}
+ ```{r PrimerChunk}
 
 ` x = 1+2+3`
 
-`r ''` ```</div>
+ ```</div>
 
 \n
 
 
 <div class = "r-code">
-`r ''` ```{r SegundoChunk}
+ ```{r SegundoChunk}
 
 ` y = 1*2*3`
 
-`r ''` ```</div>
+ ```</div>
 
 
 
@@ -434,6 +433,10 @@ Estos parámetros determinan el comportamiento del bloque al compilar el documen
 
 ## Parámetros de los chunks
 
+\begin[itemize]
+  \item teste
+\end[itemize]
+
 Código |  Significado                                  
 --------------------|--------------------
 `echo` | Si lo igualamos a `TRUE`, que es el valor por defecto, estaremos diciendo que queremos que se muestre el código fuente del chunk. En cambio, igualado a `FALSE`, no se mostrará
@@ -444,7 +447,7 @@ Código |  Significado
 ## Parámetros de los chunks
 
 <div class = "r-code">
-`r ''` ```{r, echo=FALSE}
+ ```{r, echo=FALSE}
 
 ` sec = 10:20`
 
@@ -452,7 +455,7 @@ Código |  Significado
 
 `cumsum(sec)`
 
-`r ''` ```</div>
+ ```</div>
 
 \n
 
@@ -461,37 +464,60 @@ No aparece
 ## Parámetros de los chunks
 
 <div class = "r-code">
-`r ''` ```{r, echo=TRUE, message = TRUE}
+ ```{r, echo=TRUE, message = TRUE}
 
 `library(car)`
 
 `head(cars,3)`
 
-`r ''` ```</div>
+ ```</div>
 
 \n
 
-```{r, echo = TRUE, message = TRUE}
+
+```r
 library(car)
+```
+
+```
+## Loading required package: carData
+```
+
+```r
 head(cars,3)
+```
+
+```
+##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
 ```
 
 ## Parámetros de los chunks
 
 <div class = "r-code">
-`r ''` ```{r, echo=TRUE, message = FALSE, comment = NA}
+ ```{r, echo=TRUE, message = FALSE, comment = NA}
 
 `library(car)`
 
 `head(cars,3)`
 
-`r ''` ```</div>
+ ```</div>
 
 \n
 
-```{r, echo = TRUE, message = FALSE, comment = NA}
+
+```r
 library(car)
 head(cars,3)
+```
+
+```
+  speed dist
+1     4    2
+2     4   10
+3     7    4
 ```
 
 Fijaos que `comment=NA` evita que aparezcan los `##`
@@ -509,7 +535,7 @@ Significado |  Código  |  Resultado
 
 
 <div class = "r-code">
-`r ''` ```{r, echo=TRUE, results = "markup"}
+ ```{r, echo=TRUE, results = "markup"}
 
 ` sec = 10:20`
 
@@ -517,11 +543,46 @@ Significado |  Código  |  Resultado
 
 `cumsum(sec)`
 
-`r ''` ```</div>
+ ```</div>
 
 \n
 
-```{r, echo=TRUE, results='markup'}
+
+```r
+sec = 10:20
+sec
+```
+
+```
+##  [1] 10 11 12 13 14 15 16 17 18 19 20
+```
+
+```r
+cumsum(sec)
+```
+
+```
+##  [1]  10  21  33  46  60  75  91 108 126 145 165
+```
+
+## Parámetros de los chunks
+
+
+<div class = "r-code">
+ ```{r, echo=TRUE, results = "hide"}
+
+` sec = 10:20`
+
+`sec`
+
+`cumsum(sec)`
+
+ ```</div>
+
+\n
+
+
+```r
 sec = 10:20
 sec
 cumsum(sec)
@@ -531,7 +592,7 @@ cumsum(sec)
 
 
 <div class = "r-code">
-`r ''` ```{r, echo=TRUE, results = "hide"}
+ ```{r, echo=TRUE, results = "asis"}
 
 ` sec = 10:20`
 
@@ -539,21 +600,29 @@ cumsum(sec)
 
 `cumsum(sec)`
 
-`r ''` ```</div>
+ ```</div>
 
 \n
 
-```{r, echo=TRUE, results='hide'}
+
+```r
 sec = 10:20
 sec
+```
+
+ [1] 10 11 12 13 14 15 16 17 18 19 20
+
+```r
 cumsum(sec)
 ```
+
+ [1]  10  21  33  46  60  75  91 108 126 145 165
 
 ## Parámetros de los chunks
 
 
 <div class = "r-code">
-`r ''` ```{r, echo=TRUE, results = "asis"}
+ ```{r, echo=TRUE, results = "hold"}
 
 ` sec = 10:20`
 
@@ -561,36 +630,20 @@ cumsum(sec)
 
 `cumsum(sec)`
 
-`r ''` ```</div>
+ ```</div>
 
 \n
 
-```{r, echo=TRUE, results='asis'}
+
+```r
 sec = 10:20
 sec
 cumsum(sec)
 ```
 
-## Parámetros de los chunks
-
-
-<div class = "r-code">
-`r ''` ```{r, echo=TRUE, results = "hold"}
-
-` sec = 10:20`
-
-`sec`
-
-`cumsum(sec)`
-
-`r ''` ```</div>
-
-\n
-
-```{r, echo=TRUE, results='hold'}
-sec = 10:20
-sec
-cumsum(sec)
+```
+##  [1] 10 11 12 13 14 15 16 17 18 19 20
+##  [1]  10  21  33  46  60  75  91 108 126 145 165
 ```
 
 # Los chunks en modo línea
@@ -599,14 +652,14 @@ cumsum(sec)
 
 Con lo explicado hasta ahora, solamente hemos generado resultados en la línea aparte
 
-Para introducir una parte de código dentro de un párrafo y que se ejecute al comilarse el documento mostrando así el resultado final, hay que hacerlo utilizando `` `r "\u0060r ...\u0060"` ``
+Para introducir una parte de código dentro de un párrafo y que se ejecute al comilarse el documento mostrando así el resultado final, hay que hacerlo utilizando `` `r ...` ``
 
 <div class = "example">
 **Ejemplo**
 
-La raíz cuadrada de 64 es `` `r "\u0060r sqrt(64)\u0060"` `` o, lo que viene siendo lo mismo, $\sqrt{64}=$`` `r "\u0060r sqrt(64)\u0060"` ``
+La raíz cuadrada de 64 es `` `r sqrt(64)` `` o, lo que viene siendo lo mismo, $\sqrt{64}=$`` `r sqrt(64)` ``
 
-La raíz quinta de 32 es `r 32^(1/5)` o, lo que viene siendo lo mismo, $\sqrt[5]{64}=$ `r 32^(1/5)`.
+La raíz quinta de 32 es 2 o, lo que viene siendo lo mismo, $\sqrt[5]{64}=$ 2.
 </div>
 
 

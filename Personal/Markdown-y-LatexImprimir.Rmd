@@ -1,18 +1,19 @@
 ---
-title: "Tema 2 - Documentación con R Markdown"
-author: "Juan Gabriel Gomila & María Santos"
+title: "Latex y Markdown con R"
+author: "Welton Vieira dos Santos"
+date: "8/2/2020"
 output:
-  ioslides_presentation: 
+  beamer_presentation: default
+  html_document: default
+  ioslides_presentation:
     css: JB_style.css
     logo: Imgs/LogoCurso.png
     widescreen: yes
-  slidy_presentation: default
-  beamer_presentation: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
 ```
 
 
@@ -33,7 +34,7 @@ Nosotros, en este tema, veremos cómo controlar el comportamiento de los bloques
 
 ## Cómo escribir
 
-Para escribir fórmulas matemáticas bien formateadas utilizaremos la sintaxis $\LaTeX$
+Para escribir fórmulas matemáticas bien formateadas utilizaremos la sintaxis \LaTeX
 
    - Para tener ecuaciones o fórmulas en el mismo párrafo, escribimos nuestro código entre dos símbolos de dólar: `$`código`$`
    - Si queremos tener ecuaciones o fórmulas centradas en un párrafo aparte, escribimos nuestro código entre dos dobles símbolos de dólar:  `$$`código`$$`
@@ -46,15 +47,17 @@ Para escribir fórmulas matemáticas bien formateadas utilizaremos la sintaxis $
 
 Para que veáis que RStudio ignora el exceso de espacios en blanco, aquí os damos un ejemplo en el que hemos introducido espacios innecesarios:
 
-Código: `En en instituto`$\ \ \ \ \ $ `nos enseñaron que las raíces de las ecuaciones de tercer grado, de la forma $Ax^3+Bx^2+Cx+D=0$, se encuentran mediante \textit{la Regla de Ruffini}. Por su parte,`$\ \ \ \ \ \ \ \ \ $ `las raíces de las ecuaciones de segundo grado de la forma $\alpha x^2+\beta x+\gamma=0$ se encuentran siguiendo la fórmula $$x = \frac{-\beta\pm\sqrt{\beta^2`$\ \ \ \ \ \ \ \ \ \ \ \ $`-4\alpha\gamma}}{2\alpha}$$.`
+Código: `En en instituto nos enseñaron que las raíces de las ecuaciones de tercer grado, de la forma $Ax^3+Bx^2+Cx+D=0$, se encuentran mediante \textit{la Regla de Ruffini}. Por su parte, las raíces de las ecuaciones de segundo grado de la forma $\alpha x^2+\beta x+\gamma=0$ se encuentran siguiendo la fórmula $$x=\frac{-\beta\pm\sqrt{\beta^2-4\alpha\gamma}}
+{2\alpha}$$.`
 
-Resultado: En en instituto    nos enseñaron que las raíces de las ecuaciones de tercer grado, de la forma $Ax^3+Bx^2+Cx+D=0$, se encuentran mediante *la Regla de Ruffini*. Por su parte,       las raíces de las ecuaciones de segundo grado de la forma $\alpha x^2+\beta x+\gamma=0$ se encuentran siguiendo la fórmula $$x = \frac{-\beta\pm\sqrt{\beta^2    -4\alpha\gamma}}{2\alpha}$$.
+## Resultado: 
+En en instituto    nos enseñaron que las raíces de las ecuaciones de tercer grado, de la forma $Ax^3+Bx^2+Cx+D=0$, se encuentran mediante *la Regla de Ruffini*. Por su parte,las raíces de las ecuaciones de segundo grado de la forma $\alpha x^2+\beta x+\gamma=0$ se encuentran siguiendo la fórmula $$x = \frac{-\beta\pm\sqrt{\beta^2-4\alpha\gamma}}{2\alpha}$$.
 
 ## Símbolos 
 
-Hay muchísimos símbolos matemáticos que puedes escribirse con la sintaxis $\LaTeX$. En el ejemplo anterior ya os hemos mostrado unos pocos. En este tema, nosotros solo veremos los más utilizados.
+Hay muchísimos símbolos matemáticos que puedes escribirse con la sintaxis \LaTeX. En el ejemplo anterior ya os hemos mostrado unos pocos. En este tema, nosotros solo veremos los más utilizados.
 
-Para quien quiera ir más allá, aquí os dejamos un [documento muy útil](http://www.ptep-online.com/ctan/symbols.pdf) con gran cantidad de símbolos de $\LaTeX$.
+Para quien quiera ir más allá, aquí os dejamos un [documento muy útil](http://www.ptep-online.com/ctan/symbols.pdf) con gran cantidad de símbolos de \LaTeX.
 
 ## Símbolos matemáticos - Básico
 
@@ -378,14 +381,13 @@ La función `text{}` nos permite introducir texto en fórmulas matemáticas.
 
 Los bloques de código de R dentro de un documento R Markdown se indican de la manera siguiente
 
-<div class = "r-code">
-`r ''` ```{r}
+\text{```\{r\}}
 
-` x = 1+1`
+\text{    x = 1+1}
 
-` x`
+\text{    x}
 
-`r ''` ```</div>
+\text{```}
 
 que resulta en
 
@@ -406,36 +408,40 @@ Hay diversas opciones de crear un bloque de código de R:
 
 A los chunks se les puede poner etiqueta, para así localizarlos de manera más fácil. Por ejemplo
 
-<div class = "r-code">
-`r ''` ```{r PrimerChunk}
 
-` x = 1+2+3`
+\text{```\{r PrimerChunk\}}
 
-`r ''` ```</div>
+\text{      x = 1+2+3}
 
-\n
-
-
-<div class = "r-code">
-`r ''` ```{r SegundoChunk}
-
-` y = 1*2*3`
-
-`r ''` ```</div>
+\text{```}
 
 
 
+
+
+\text{```\{r SegundoChunk\}}
+
+\text{     y = 1*2*3}
+
+\text{```}
+
+
+
+
+## Parámetros de los chunks
+
+La parte entre llaves también puede contener diversos parámetros, separados por comas entre ellos 
+y separados de la etiqueta (o de r, si hemos decidido no poner ninguna).
+
+Estos parámetros determinan el comportamiento del bloque al compilar el documento pulsando el botón 
+`Knit` situado en la barra superior del área de trabajo.
 
 ## Parámetros de los chunks
 
-La parte entre llaves también puede contener diversos parámetros, separados por comas entre ellos y separados de la etiqueta (o de r, si hemos decidido no poner ninguna).
 
-Estos parámetros determinan el comportamiento del bloque al compilar el documento pulsando el botón `Knit` situado en la barra superior del área de trabajo.
-
-## Parámetros de los chunks
 
 Código |  Significado                                  
---------------------|--------------------
+-------|--------------------
 `echo` | Si lo igualamos a `TRUE`, que es el valor por defecto, estaremos diciendo que queremos que se muestre el código fuente del chunk. En cambio, igualado a `FALSE`, no se mostrará
 `eval` | Si lo igualamos a `TRUE`, que es el valor por defecto, estaremos diciendo que queremos que se evalúe el código. En cambio, igualado a `FALSE`, no se evaluará
 `message` | Nos permite indicar si queremos que se muestren los mensajes que R produce al ejecutar código. Igualado a `TRUE` se muestran, igualado a `FALSE` no
@@ -443,33 +449,38 @@ Código |  Significado
 
 ## Parámetros de los chunks
 
-<div class = "r-code">
-`r ''` ```{r, echo=FALSE}
 
-` sec = 10:20`
+\text{```\{r, echo=FALSE\}}
 
-`sec`
+\text{      sec = 10:20}
 
-`cumsum(sec)`
+\text{      sec}
 
-`r ''` ```</div>
+\text{      cumsum(sec)}
 
-\n
+\text{```}
 
-No aparece
+
+Resultado del chuncks anterior, pero no se muestra el código porque el parámetro _echo_ que esta en _FALSE_ 
+```{r, echo=FALSE}
+  sec = 10:20
+  sec
+  cumsum(sec)
+
+```
 
 ## Parámetros de los chunks
 
-<div class = "r-code">
-`r ''` ```{r, echo=TRUE, message = TRUE}
 
-`library(car)`
+\text{```\{r, echo=TRUE, message = TRUE\}}
 
-`head(cars,3)`
+\text{     library(car)}
 
-`r ''` ```</div>
+\text{     head(cars,3)}
 
-\n
+\text{```}
+
+
 
 ```{r, echo = TRUE, message = TRUE}
 library(car)
@@ -478,23 +489,22 @@ head(cars,3)
 
 ## Parámetros de los chunks
 
-<div class = "r-code">
-`r ''` ```{r, echo=TRUE, message = FALSE, comment = NA}
 
-`library(car)`
+\text{```\{r, echo=TRUE, message = FALSE, comment = NA\}}
 
-`head(cars,3)`
+\text{     library(car)}
 
-`r ''` ```</div>
+\text{     head(cars,3)}
 
-\n
+\text{```}
+
 
 ```{r, echo = TRUE, message = FALSE, comment = NA}
 library(car)
 head(cars,3)
 ```
 
-Fijaos que `comment=NA` evita que aparezcan los `##`
+Fijaos que **_comment = NA_** evita que aparezcan los **_##_**
 
 ## Parámetros de los chunks
 
@@ -502,24 +512,26 @@ Significado |  Código  |  Resultado
 --------------------|--------------------|--------------------
 `results` | `markup` | Valor por defecto. Nos muestra los resultados en el documento final línea a línea, encabezados por `##`
 `results` | `hide` | No se nos muestra el resultado en el documento final
+
+
+## Parámetros de los chunks
+Significado |  Código  |  Resultado                                
+--------------------|--------------------|--------------------
 `results` | `asis` | Nos devuelve los resultados línea a línea de manera literal en el documento final y el programa con el que se abre el documento final los interpreta como texto y formatea adecuadamente
 `results` | `hold` | Miestra todos los resultados al final del bloque de código
  
 ## Parámetros de los chunks
 
+\text{```\{r, echo=TRUE, results = "markup"\}}
 
-<div class = "r-code">
-`r ''` ```{r, echo=TRUE, results = "markup"}
+\text{     sec = 10:20}
 
-` sec = 10:20`
+\text{     sec}
 
-`sec`
+\text{     cumsum(sec)}
 
-`cumsum(sec)`
+\text{```}
 
-`r ''` ```</div>
-
-\n
 
 ```{r, echo=TRUE, results='markup'}
 sec = 10:20
@@ -530,18 +542,16 @@ cumsum(sec)
 ## Parámetros de los chunks
 
 
-<div class = "r-code">
-`r ''` ```{r, echo=TRUE, results = "hide"}
+\text{```\{r, echo=TRUE, results = "hide"\}}
 
-` sec = 10:20`
+\text{     sec = 10:20}
 
-`sec`
+\text{     sec}
 
-`cumsum(sec)`
+\text{     cumsum(sec)}
 
-`r ''` ```</div>
+\text{```}
 
-\n
 
 ```{r, echo=TRUE, results='hide'}
 sec = 10:20
@@ -552,18 +562,16 @@ cumsum(sec)
 ## Parámetros de los chunks
 
 
-<div class = "r-code">
-`r ''` ```{r, echo=TRUE, results = "asis"}
+\text{```\{r, echo=TRUE, results = "asis"\}}
 
-` sec = 10:20`
+\text{     sec = 10:20}
 
-`sec`
+\text{     sec}
 
-`cumsum(sec)`
+\text{     cumsum(sec)}
 
-`r ''` ```</div>
+\text{```}
 
-\n
 
 ```{r, echo=TRUE, results='asis'}
 sec = 10:20
@@ -574,18 +582,16 @@ cumsum(sec)
 ## Parámetros de los chunks
 
 
-<div class = "r-code">
-`r ''` ```{r, echo=TRUE, results = "hold"}
+\text{```\{r, echo=TRUE, results = "hold"\}}
 
-` sec = 10:20`
+\text{     sec = 10:20}
 
-`sec`
+\text{     sec}
 
-`cumsum(sec)`
+\text{     cumsum(sec)}
 
-`r ''` ```</div>
+\text{```}
 
-\n
 
 ```{r, echo=TRUE, results='hold'}
 sec = 10:20
@@ -609,7 +615,3 @@ La raíz cuadrada de 64 es `` `r "\u0060r sqrt(64)\u0060"` `` o, lo que viene si
 La raíz quinta de 32 es `r 32^(1/5)` o, lo que viene siendo lo mismo, $\sqrt[5]{64}=$ `r 32^(1/5)`.
 </div>
 
-
-
-
- 
