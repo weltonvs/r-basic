@@ -49,4 +49,199 @@ sqrt(2) - exp(-2)
 ## Parámetros de los chunks
 
 * Los modificadores del parámetro _**echo**_:
-  * _**FALSE**_: 
+  * _**FALSE:**_ Ese valor hace que solamente muestra el resultado de la ejecución del código y oculta la expresión utilizada en el código.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, echo = FALSE}</p>
+    <p>    sec = 10:20 </p>
+    <p>    sec </p>
+    <p>    cumsum(sec) </p>
+    <p>''' </p>
+  </div>
+  ```{r, echo = FALSE}
+    sec = 10:20
+    sec
+    cumsum(sec)
+  ```
+  
+  * _**TRUE:**_ Ese valor hace se muestre el código utilizado y el resultado. Por defecto el **_chunk_** se ejecuta así.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, echo = TRUE}</p>
+    <p>    sec = 10:20 </p>
+    <p>    sec </p>
+    <p>    cumsum(sec) </p>
+    <p>''' </p>
+  </div>
+
+  
+
+* Los modificadores del parámetro **_eval_**:
+  * **_FALSE:_** El parámetro con ese valor, hace que el código del **_chunk_** no sea avaluado.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, eval = FALSE}</p>
+    <p>    sec = 10:20 </p>
+    <p>    sec </p>
+    <p>    cumsum(sec) </p>
+    <p>''' </p>
+  </div>
+  ```{r eval = FALSE}
+    sec = 10:20
+    sec
+    cumsum(sec)
+  ```
+  * **_TRUE:_** El parámetro con ese valor, hace que el código del **_chunk_** que sea avaluado.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, eval = TRUE}</p>
+    <p>    sec = 10:20 </p>
+    <p>    sec </p>
+    <p>    cumsum(sec) </p>
+    <p>''' </p>
+  </div>
+  ```{r eval = TRUE}
+    sec = 10:20
+    sec
+    cumsum(sec)
+  ```
+* Los modificadores del parámetro **_mensage_**:
+  * **_FALSE:_** El parámetro con ese valor, hace que los mensajes generados por R sea visualizados.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, mensage = FALSE}</p>
+    <p>    library(car) </p>
+    <p>    head(cars, 3) </p>
+    <p>''' </p>
+  </div>
+  ```{r mensage = FALSE}
+    library(car)
+    head(cars, 3)
+  ```
+  * **_TRUE:_** El parámetro con ese valor, hace que los mensajes generados por R NO sea visualizados.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, mensage = TRUE}</p>
+    <p>    library(car) </p>
+    <p>    head(cars, 3) </p>
+    <p>''' </p>
+  </div>
+  ```{r mensage = TRUE}
+    library(car)
+    head(cars, 3)
+  ```
+* Los modificadores del parámetro **_warning_**:
+  * **_FALSE:_** El parámetro con ese valor, hace que los mensajes de aviso al ejecutar determinadas funciones sea visualizados.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, warning = FALSE}</p>
+    <p>    library(car) </p>
+    <p>    head(cars, 3) </p>
+    <p>''' </p>
+  </div>
+  ```{r warning = FALSE}
+    library(car)
+    head(cars, 3)
+  ```
+  * **_TRUE:_** El parámetro con ese valor, hace que los mensajes de aviso al ejecutar determinadas funciones NO sea visualizados.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, warning = TRUE}</p>
+    <p>    library(car) </p>
+    <p>    head(cars, 3) </p>
+    <p>''' </p>
+  </div>
+  ```{r warning = TRUE}
+    library(car)
+    head(cars, 3)
+  ```
+* Los modificadores del parámetro **_comment_**:
+  * **_NA:_** El parámetro con ese valor, hace que los símbolos **#** no aparezcan en el resultado de las ejecuciones de los **_chunks_**.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, comment = NA}</p>
+    <p>    library(car) </p>
+    <p>    head(cars, 3) </p>
+    <p>''' </p>
+  </div>
+  ```{r comment = NA}
+    library(car)
+    head(cars, 3)
+  ```
+  De forma standar los comentarios viene vacios. Con eso permite que se muestren los **#** en los resultados.
+  
+* Los modificadores del parámetro **_results_**:
+  * **_markup:_** Valor por defecto del parámetro **_results_**. Nos muestra los resultados en el documento final línea a línea. Encabezados por **_##_**.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, results = 'markup'}</p>
+    <p>    library(car) </p>
+    <p>    head(cars, 3) </p>
+    <p>''' </p>
+  </div>
+  ```{r results = 'markup'}
+    library(car)
+    head(cars, 3)
+  ```
+  * **_hide:_** No se muestra los resultados en el documento final.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r, results = 'hide'}</p>
+    <p>    library(car) </p>
+    <p>    head(cars, 3) </p>
+    <p>''' </p>
+  </div>
+  ```{r results = 'hide'}
+    library(car)
+    head(cars, 3)
+  ```
+  * **_asis:_** Nos devuelve los resultados línea a línea de manera literal en el documento final y el programa con el que se abre el documento final los interpreta como texto y formatea adecuadamente.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r magic, results = 'asis'}</p>
+    <p>    library(magic) </p>
+    <p>    magic(6) </p>
+    <p>''' </p>
+  </div>
+  ```{r magic, results = 'asis'}
+    library(magic)
+    magic(6)
+  ```
+  * **_hold:_** Muestra todos los resultados al final del bloque de código.
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks </p>
+    <p> '''{r ,results = 'hold'}</p>
+    <p>    sqrt(2) - exp(-2) </p>
+    <p>    x <- 1:5 </p>
+    <p>    sqrt(x) </p>
+    <p>''' </p>
+  </div>
+  ```{r results = 'hold'}
+    sqrt(2) - exp(-2)
+    x <- 1:5
+    sqrt(x)
+  ```
+  <div class="r-code">
+    <p class="aligncenter"> Código del chunks sin el parámetro **_hold_**. </p>
+    <p> '''{r}</p>
+    <p>    sqrt(2) - exp(-2) </p>
+    <p>    x <- 1:5 </p>
+    <p>    sqrt(x) </p>
+    <p>''' </p>
+  </div>
+  ```{r}
+    sqrt(2) - exp(-2)
+    x <- 1:5
+    sqrt(x)
+  ```
+  
+  ## Los chunks en modo línea
+  Con lo explicado hasta ahora, solamente hemos generado resultados en la línea a parte.
+  
+  Para introducir una parte de código dentro de un párafo y que se ejecute al comilarse el documento mostrando así el resultado final, hay que hacerlo utilizando $\text{'r...'}$ donde el $\cdots$ significa que va la expresión a ejecutarse.
+  
+  **Ejemplo:**
+  - En $\LaTeX$ se escribe $\text{\sqrt{2}}$ y como resultado obtenemos: $\sqrt{2}$
+  - En `R` se escribe la chunk de línea $\text{'r sqrt(2)'}$ y se obtiene el resultado calculado: `r sqrt(2)`
+  - La frase completa sería: $\text{\sqrt{2}= 'r sqrt(2)'}$ y se obtiene como resultado $\sqrt{2}=$ `r sqrt(2)`
+  -  Si escribe $\text{El número \$\pi\$ es 'r pi'}$ como resultado tendrá: El número $\pi$ es `r pi`.

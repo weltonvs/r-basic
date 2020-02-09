@@ -412,9 +412,381 @@ sqrt(2) - exp(-2)
 <div id="parámetros-de-los-chunks" class="section level2">
 <h2>Parámetros de los chunks</h2>
 <ul>
-<li>Los modificadores del parámetro <em><strong>echo</strong></em>:
+<li><p>Los modificadores del parámetro <em><strong>echo</strong></em>:</p>
 <ul>
-<li><em><strong>FALSE</strong></em>:</li>
+<li><em><strong>FALSE:</strong></em> Ese valor hace que solamente muestra el resultado de la ejecución del código y oculta la expresión utilizada en el código.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’’{r, echo = FALSE}
+</p>
+<p>
+sec = 10:20
+</p>
+<p>
+sec
+</p>
+<p>
+cumsum(sec)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+<pre><code>##  [1]  10  21  33  46  60  75  91 108 126 145 165</code></pre>
+<ul>
+<li><em><strong>TRUE:</strong></em> Ese valor hace se muestre el código utilizado y el resultado. Por defecto el <strong><em>chunk</em></strong> se ejecuta así.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’’{r, echo = TRUE}
+</p>
+<p>
+sec = 10:20
+</p>
+<p>
+sec
+</p>
+<p>
+cumsum(sec)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul></li>
+<li><p>Los modificadores del parámetro <strong><em>eval</em></strong>:</p>
+<ul>
+<li><strong><em>FALSE:</em></strong> El parámetro con ese valor, hace que el código del <strong><em>chunk</em></strong> no sea avaluado.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’’{r, eval = FALSE}
+</p>
+<p>
+sec = 10:20
+</p>
+<p>
+sec
+</p>
+<p>
+cumsum(sec)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  sec = 10:20
+  sec
+  cumsum(sec)</code></pre>
+<ul>
+<li><strong><em>TRUE:</em></strong> El parámetro con ese valor, hace que el código del <strong><em>chunk</em></strong> que sea avaluado.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’’{r, eval = TRUE}
+</p>
+<p>
+sec = 10:20
+</p>
+<p>
+sec
+</p>
+<p>
+cumsum(sec)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  sec = 10:20
+  sec</code></pre>
+<pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19 20</code></pre>
+<pre class="r"><code>  cumsum(sec)</code></pre>
+<pre><code>##  [1]  10  21  33  46  60  75  91 108 126 145 165</code></pre></li>
+<li><p>Los modificadores del parámetro <strong><em>mensage</em></strong>:</p>
+<ul>
+<li><strong><em>FALSE:</em></strong> El parámetro con ese valor, hace que los mensajes generados por R sea visualizados.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’’{r, mensage = FALSE}
+</p>
+<p>
+library(car)
+</p>
+<p>
+head(cars, 3)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  library(car)</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre class="r"><code>  head(cars, 3)</code></pre>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4</code></pre>
+<ul>
+<li><strong><em>TRUE:</em></strong> El parámetro con ese valor, hace que los mensajes generados por R NO sea visualizados.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’’{r, mensage = TRUE}
+</p>
+<p>
+library(car)
+</p>
+<p>
+head(cars, 3)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  library(car)
+  head(cars, 3)</code></pre>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4</code></pre></li>
+<li><p>Los modificadores del parámetro <strong><em>warning</em></strong>:</p>
+<ul>
+<li><strong><em>FALSE:</em></strong> El parámetro con ese valor, hace que los mensajes de aviso al ejecutar determinadas funciones sea visualizados.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’’{r, warning = FALSE}
+</p>
+<p>
+library(car)
+</p>
+<p>
+head(cars, 3)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  library(car)
+  head(cars, 3)</code></pre>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4</code></pre>
+<ul>
+<li><strong><em>TRUE:</em></strong> El parámetro con ese valor, hace que los mensajes de aviso al ejecutar determinadas funciones NO sea visualizados.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’’{r, warning = TRUE}
+</p>
+<p>
+library(car)
+</p>
+<p>
+head(cars, 3)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  library(car)
+  head(cars, 3)</code></pre>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4</code></pre></li>
+<li><p>Los modificadores del parámetro <strong><em>comment</em></strong>:</p>
+<ul>
+<li><strong><em>NA:</em></strong> El parámetro con ese valor, hace que los símbolos <strong>#</strong> no aparezcan en el resultado de las ejecuciones de los <strong><em>chunks</em></strong>.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’’{r, comment = NA}
+</p>
+<p>
+library(car)
+</p>
+<p>
+head(cars, 3)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  library(car)
+  head(cars, 3)</code></pre>
+<pre><code>  speed dist
+1     4    2
+2     4   10
+3     7    4</code></pre>
+<p>De forma standar los comentarios viene vacios. Con eso permite que se muestren los <strong>#</strong> en los resultados.</p></li>
+<li><p>Los modificadores del parámetro <strong><em>results</em></strong>:</p>
+<ul>
+<li><strong><em>markup:</em></strong> Valor por defecto del parámetro <strong><em>results</em></strong>. Nos muestra los resultados en el documento final línea a línea. Encabezados por <strong><em>##</em></strong>.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’‘{r, results = ’markup’}
+</p>
+<p>
+library(car)
+</p>
+<p>
+head(cars, 3)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  library(car)
+  head(cars, 3)</code></pre>
+<pre><code>##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4</code></pre>
+<ul>
+<li><strong><em>hide:</em></strong> No se muestra los resultados en el documento final.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’‘{r, results = ’hide’}
+</p>
+<p>
+library(car)
+</p>
+<p>
+head(cars, 3)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  library(car)
+  head(cars, 3)</code></pre>
+<ul>
+<li><strong><em>asis:</em></strong> Nos devuelve los resultados línea a línea de manera literal en el documento final y el programa con el que se abre el documento final los interpreta como texto y formatea adecuadamente.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’‘{r magic, results = ’asis’}
+</p>
+<p>
+library(magic)
+</p>
+<p>
+magic(6)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  library(magic)</code></pre>
+<pre><code>## Loading required package: abind</code></pre>
+<pre class="r"><code>  magic(6)</code></pre>
+<pre><code> [,1] [,2] [,3] [,4] [,5] [,6]</code></pre>
+<p>[1,] 7 6 35 34 15 14 [2,] 8 5 33 36 16 13 [3,] 27 26 19 18 11 10 [4,] 25 28 20 17 9 12 [5,] 23 22 3 2 31 30 [6,] 21 24 1 4 29 32</p>
+<ul>
+<li><strong><em>hold:</em></strong> Muestra todos los resultados al final del bloque de código.
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks
+</p>
+<p>
+’’‘{r ,results = ’hold’}
+</p>
+<p>
+sqrt(2) - exp(-2)
+</p>
+<p>
+x &lt;- 1:5
+</p>
+<p>
+sqrt(x)
+</p>
+<p>
+’’’
+</p>
+</div></li>
+</ul>
+<pre class="r"><code>  sqrt(2) - exp(-2)
+  x &lt;- 1:5
+  sqrt(x)</code></pre>
+<pre><code>## [1] 1.278878
+## [1] 1.000000 1.414214 1.732051 2.000000 2.236068</code></pre>
+<div class="r-code">
+<p class="aligncenter">
+Código del chunks sin el parámetro <strong><em>hold</em></strong>.
+</p>
+<p>
+’’’{r}
+</p>
+<p>
+sqrt(2) - exp(-2)
+</p>
+<p>
+x &lt;- 1:5
+</p>
+<p>
+sqrt(x)
+</p>
+<p>
+’’’
+</p>
+</div>
+<pre class="r"><code>  sqrt(2) - exp(-2)</code></pre>
+<pre><code>## [1] 1.278878</code></pre>
+<pre class="r"><code>  x &lt;- 1:5
+  sqrt(x)</code></pre>
+<pre><code>## [1] 1.000000 1.414214 1.732051 2.000000 2.236068</code></pre>
+<h2 id="los-chunks-en-modo-línea">Los chunks en modo línea</h2>
+<p>Con lo explicado hasta ahora, solamente hemos generado resultados en la línea a parte.</p>
+<p>Para introducir una parte de código dentro de un párafo y que se ejecute al comilarse el documento mostrando así el resultado final, hay que hacerlo utilizando <span class="math inline">\(\text{&#39;r...&#39;}\)</span> donde el <span class="math inline">\(\cdots\)</span> significa que va la expresión a ejecutarse.</p>
+<p><strong>Ejemplo:</strong></p>
+<ul>
+<li>En <span class="math inline">\(\LaTeX\)</span> se escribe <span class="math inline">\(\text{\sqrt{2}}\)</span> y como resultado obtenemos: <span class="math inline">\(\sqrt{2}\)</span></li>
+<li>En <code>R</code> se escribe la chunk de línea <span class="math inline">\(\text{&#39;r sqrt(2)&#39;}\)</span> y se obtiene el resultado calculado: 1.4142136</li>
+<li>La frase completa sería: <span class="math inline">\(\text{\sqrt{2}= &#39;r sqrt(2)&#39;}\)</span> y se obtiene como resultado <span class="math inline">\(\sqrt{2}=\)</span> 1.4142136</li>
+<li>Si escribe <span class="math inline">\(\text{El número \$\pi\$ es &#39;r pi&#39;}\)</span> como resultado tendrá: El número <span class="math inline">\(\pi\)</span> es 3.1415927.</li>
 </ul></li>
 </ul>
 </div>
