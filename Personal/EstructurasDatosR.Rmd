@@ -382,3 +382,182 @@ str(L)
 names(L)
 ```
 
+# Matrices
+Para definir una matriz:
+
+* **matrix(vector, nrow = n, byrow = valor_lógico)**: para definir una matriz de _n_ filas formada por las entradas de un vector.
+
+  * **nrow**: número de filas.
+  
+  * **byrow**: si se iguala a TRUE, la matriz se construye por filas; si se iguala a FALSE(valor por defecto), se construye por columnas.
+  
+  * **ncol**: número de columnas(puede usarse en lugar de **nrow**)
+  
+  * `R` muestra las matrices indicando como [i,] la fila _i-ésima_ y [,j] la columna _j-ésima_.
+  
+  * Todas las entradas de una matriz han de ser del mismo tipo de datos.
+  
+```{r comment=NA}
+# Definir una matriz por columnas
+M = matrix(1:12, nrow = 4)
+M
+```
+  
+```{r comment=NA}
+# Definir una matriz por filas.
+M = matrix(1:12, nrow = 4, byrow = T)
+M
+```
+```{r comment=NA}
+# Definir una matriz por columnas, pero modificando el números de columnas
+M = matrix(1:12, nrow = 3)
+M
+```
+  ¿Que pasaría si pusieramos el número de filas que no sea multiplo del número total de dados?
+```{r comment=NA}
+# Definir donde el número de filas no es multiplo de 12.
+M = matrix(1:12, nrow = 5)
+M
+```
+  Se observa que crea la matriz pero `R` muestra un mensaje de advertencia además de completar las posiciones que faltan datos con las primeras posiciones de la matriz hasta completar con la dimensión requerida.
+  
+  Caso quiera crear una matriz solamente con un número, es obrigatorio indicar las dimensiones de la matriz. Por ejemplo:
+```{r comment=NA}
+T = matrix(1, nrow = 4, ncol = 6)
+T
+```
+  
+#### Ejercicio:
+
+1. ¿Cómo definirías una matriz constante? Es decir, ¿Cómo definirías una matriz _A_ tal que $\forall i=1, \ldots, n; j = 1, \ldots, m, a_{ij}=k$ siendo $k\in \mathbb{R}$? Como `R` no admite incóginitas, prueba para el caso específico $n = 3, m = 5, k = 0$
+
+2. Con el vector $vec=(1,2,3,4,5,6,7,8,9,10,11,12)$ crea la matriz de entrada por columnas.
+  
+
+##### Cómo construirlas
+
+* **rbind(vector1, vector2, ...)**: construye la matriz de filas vector1, vector2, ...
+
+* **cbind(vector1, vector2, ...)**: construye la matriz de columnas vector1, vector2, ...
+
+  * Los vectores han de tener la misma longitud
+  
+  * Tambíen sirve para añadir columnas (filas) a una matriz o concatenar por columnas (filas) matrices con el mismo número de filas (columnas)
+  
+* **diag(vector)**: para construir una matriz diagonal con un vector dado
+
+  Si aplicamos **diag** a un número _n_, produce una matriz identidad de orden _n_
+  
+
+## Submatrices
+
+* **matriz[i, j]**: indica la entrada (_i,j_) de la matriz, siendo $i,j \in \mathbb{N}$. Si _i_ y _j_ son vectores de índices, estaremos definiendo la submatriz con las filas pertenecientes al vector _i_ y columnas pertenecientes al vector _j_
+* **matriz[i, ]**: indica la fila _i_-ésima de la matriz, siendo $i\in \mathbb{N}$
+* **matriz[, j]**: indica la columna _j_-ésima de la matriz, siendo $j\in \mathbb{N}$
+
+  * Si _i_ (_j_) es un vector de índices (colección de índices), estaremos definiendo la submatriz con las filas (columnas) pertenecientes al vector _i_ (_j_)
+  
+```{r comment=NA}
+M #Vector original
+```
+```{r comment=NA}
+M[2,3] #Subvector de la posición de linea 2 y columna 3
+```
+```{r comment=NA}
+M[2,] # Subvector de la linea 2
+```
+```{r comment=NA}
+M[, 3] # Subvector de la columna 3
+```
+
+```{r comment=NA}
+# Subvector con las filas 2, 3 y 5 más las columnas de 1 hasta 2
+M[c(2,3,5), 1:2]
+```
+
+## Funciones de matriz
+* **diag(matriz)**: para obtener la diagonal de una matriz
+```{r comment=NA}
+diag(M)
+```
+
+
+* **nrow(matriz)**: para obtener el número de filas de la matriz
+```{r comment=NA}
+nrow(M)
+```
+
+
+* **ncol(matriz)**: para obtener el número de columnas de la matriz
+```{r comment=NA}
+ncol(M)
+```
+
+
+* **dim(matriz)**: para obtener la dimensión de la matriz
+```{r comment=NA}
+dim(M)
+```
+
+
+* **sum(matriz)**: para obtener la suma de todas las entradas de la matriz
+```{r comment=NA}
+sum(M)
+```
+
+
+* **prod(matriz)**: para obtener la producto de todas las entradas de la matriz
+```{r comment=NA}
+prod(M)
+```
+
+
+* **mean(matriz)**: para obtener la media aritmética de todas las entradas de la matriz
+```{r comment=NA}
+mean(M)
+```
+
+
+* **rowSums(matriz)**: para obtener la sumaS por filas de la matriz
+```{r comment=NA}
+rowSums(M)
+```
+
+* **colSums(matriz)**: para obtener la sumas por columnas de la matriz
+```{r comment=NA}
+colSums(M)
+```
+
+* **rowMeans(matriz)**: para obtener la media aritméticas por por filas de la matriz
+```{r comment=NA}
+colMeans(M)
+```
+
+* **colMeans(matriz)**: para obtener la media aritméticas por por columnas de la matriz
+```{r comment=NA}
+colMeans(M)
+```
+
+* **apply(MATRIX, MARGIN = 1, FUN, ...)**: aplicar una función por filas de la matriz. Donde se indica por filas es el MARGIN=1.
+
+```{r comment=NA}
+apply(M, MARGIN = 1, FUN = function(x){
+  sqrt(sum(x^2))
+})
+```
+
+* **apply(MATRIX, MARGIN = 2, FUN, ...)**: aplicar una función por columnas de la matriz. Donde se indica por filas es el MARGIN=2.
+
+```{r comment=NA}
+apply(M, MARGIN = 2, FUN = function(x){
+  sqrt(sum(x^2))
+})
+```
+* **apply(MATRIX, MARGIN = c(X,Y), FUN, ...)**: aplicar una función por filas y columnas de la matriz. Donde se indica por filas es el MARGIN=c(x,y).
+
+```{r comment=NA}
+apply(M, MARGIN = c(1:2), FUN = function(x){
+  x^2
+})
+```
+
