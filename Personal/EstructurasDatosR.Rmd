@@ -266,3 +266,119 @@ Dado un vector de datos $x$ podemos calcular muchas medidas estadísticas acerca
     # Inviertiendo los elementos del vector.
     rev(v)
   ```
+  
+  
+# Factor
+**Factor:** Es como un vector, pero con una estructura interna más rica que permite usarlo para clasificar observaciones.
+
+* **levels**: Atributo del factor. Cada elemento del factor es igual a un nivel. Los niveles clasifican las entradas del factor. Se ordenan por orden alfabético.
+
+* Para definir un factor, primero hay que definir un vector y despues transformarlo por medio de una de las funciones **factor()** o **as.factor()**.
+```{r comment=NA}
+#Crear un vector de nombres
+nombres = c("Juan", "Antonio", "Ricardo", "Juan", "Juan", "Maria", "Maria")
+nombres
+```
+```{r comment=NA}
+#Convertir el array anterior en un factor
+nombres.factor = factor(nombres) #Convertir a factor el array nombres.
+nombres.factor#Consultar el contenido del factor nombres
+```
+Se observa que tiene un formato peculiar, es decir, las doble comillas desaparecen y además aparece un termino nuevo indicando los niveles donde es presente todos los nombres de contenido, pero sin repetición.
+
+Muy utilizado para clasificar los datos de un vector.
+**Ejemplo:**
+```{r comment=NA}
+genero = c("M","H","H","M","M","M","M","H","H")
+genero.fact = factor(genero)
+genero.fact
+```
+Se puede crear tambien utilizando **as.factor()**
+```{r comment=NA}
+genero.fact2 = as.factor(genero)
+genero.fact2
+```
+
+Pueden parecer iguales visualmente, pero internamente no lo es.
+
+## La función factor()
+* **factor(vector, levels = ...)**: define un factor a partir del vector y dispone de algunos parámetros que permiten modificar el factor que se crea:
+  * **levels**: permite especificar los niveles e incluso añadir niveles que no aparece en el vector.
+  
+```{r comment=NA}
+  genero.fact3 = factor(genero, levels = c("M","H","B"))
+  genero.fact3
+
+```
+  
+  
+  * **labels**: permite cambiar los nombres de los niveles
+```{r comment=NA}
+  genero.fact4 = factor(genero, levels = c("M","H","B"), labels = c("Mujer","Hombre",
+  "Hermafrodita"))
+  genero.fact4
+
+```
+  
+* **levels(factor)**: permite obtener los niveles del factor
+```{r comment=NA}
+levels(genero.fact4)
+```
+Para modificar los niveles del factor
+```{r comment=NA}
+levels(genero.fact4) = c("Feminino", "Masculino", "Híbrido")
+genero.fact4
+```
+
+### Factor Ordenado
+Hasta ahora he hablado del factor simple, pero hay otros factores conocidos como factor ordenado.
+
+Que es un factor donde los niveles siguen un orden.
+
+* **ordered(vector, levels = ...)**: función que define un factor ordenado y tiene los mismos parámetros que el factor simple.
+
+
+# Listas
+En `R` son conocidas como **list** que es una lista formada por diferentes objetos, no necesariamiente del mismo tipo, cada cual con un nombre interno.
+
+* **list(...)***: función que crea una lista.
+
+  * Para obtener una componente concreta usamos la instrucción **list$componente**.
+  
+  * También podemos indicar el objeto por su posición usando dobles corchetes: _list[[i]]_. Lo que obtendremos es una lista formada por esa única componente, no el objeto que forma la componente.
+  
+  **Ejmeplos de creacción de listas:**
+  
+```{r comment=NA}
+x = c(1,5,-2,6,-7,8,-3,-9)
+x
+```
+  
+Crear una lista
+```{r comment=NA}
+L = list(nombre = "temperaturas", datos = x, media = mean(x), sumas = cumsum(x))
+L
+
+```
+
+Para acceder a un componente de la lista
+```{r comment=NA}
+L$media
+
+```
+
+```{r comment=NA}
+L$nombre
+```
+#### Obtener información de una lista
+* **str(lista)**: para conocer la estructura interna de una lista
+```{r comment=NA}
+str(L)
+```
+
+
+* **names(lista)**: para saber los nombres de la lista
+```{r comment=NA}
+names(L)
+```
+
