@@ -2,7 +2,10 @@
 title: "Gráficos con R"
 author: "Welton Vieira dos Santos"
 date: "16/2/2020"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -327,5 +330,77 @@ x = c(5*(1:20))
 plot(x, c(exp(-x)+(-1)^x*x/2*sin(x)^2))
 lines(c(20,10,40,80,60,60,20),c(20,0,-20,-20,40,0,20), lwd = 2, col = "darkslategray1")
 curve(20*sin(x), add = TRUE, col = "green")
+```
+
+### Leyendas en los gráficos
+
+Muchas veces es dificil identificar de cual función pertenece a una gráfica, por ejemplo, la gráfica abajo lo tiene dificil de identificar a quien pertenece cada gráfica.
+
+```{r comment=NA, echo=FALSE, fig.align="center"}
+#crear una función, ese caso una parábola
+f <- function(x){
+  x^2
+}
+#Plotar la función dentro de un límite de -3 a 3.
+plot(f, xlim = c(-3, 3), ylim = c(-10,10))
+#Muestrar los puntos donde unirá las rectas
+points(-3:3, f(-3:3), pch = 19)
+#Plotar las rectas en los puntos creados.
+lines(-3:3,f(-3:3),lwd = 2, lty = "dotted", col = "red")
+
+#Añadir una curva
+curve(x^3, lty = "dashed", col = "blue", add = TRUE)
+curve(x^4, lty = "dashed", col = "green", add = TRUE)
+```
+
+Para facilitar la identificación se hace uso de las leyendas en los gráficos.
+
+* **legend(posición, legend = ...)**: para añadir una leyenda
+
+  * La posición indica donde queremos situar la leyenda, Puede ser o bien las coordenadas de la esquina superior izquierda de nuestra leyenda, o bien una de las palabras siguientes:
+  
+    * "bottom" / "bottomright" / "botomleft"
+    
+    * "top" / "topright" / "topleft"
+    
+    * "center" / "right" / "left"
+
+  * **legend**: contiene el vector de nombres entre commillas con los que queremos identificar a las curvas en la leyenda.
+  
+Ejemplo:
+```{r comment=NA, fig.align="center"}
+x <- seq(0, 2*pi, 0.1)
+plot(x, sin(x), type = "l", col = "blue", lwd = 3, xlab = "", ylab = "")
+lines(x, cos(x), col = "green", lwd = 3)
+lines(x, tan(x), col = "purple", lwd = 3)
+legend("bottomleft", col = c("blue", "green", "purple"), 
+       legend = c("Seno", "Coseno", "Tangente"), lwd = 3, bty = "l")
+```
+
+otro ejemplo:
+```{r comment=NA, fig.align="center"}
+#crear una función, ese caso una parábola
+f <- function(x){
+  x^2
+}
+#Plotar la función dentro de un límite de -3 a 3.
+plot(f, xlim = c(-3, 3), ylim = c(-10,10))
+#Muestrar los puntos donde unirá las rectas
+points(-3:3, f(-3:3), pch = 19)
+#Plotar las rectas en los puntos creados.
+lines(-3:3,f(-3:3),lwd = 2, lty = "dotted", col = "red")
+
+#Añadir una curva
+curve(x^3, lty = "dashed", col = "blue", add = TRUE)
+curve(x^4, lty = "dashed", col = "green", add = TRUE)
+
+#añadiendo la leyenda
+legend(
+  "bottomright", 
+  legend = c(expression(x^2), expression(x^3), expression(x^4)), 
+  lwd = 2, 
+  col = c("red", "blue", "green"), 
+  lty = c("dotted", "dashed", "dashed")
+)
 ```
 
