@@ -404,3 +404,47 @@ legend(
 )
 ```
 
+### Añadir segmentos, flechas, símbolos y pilígonos al gráfico.
+
+* **segments**: para añadir segmentos a un gráifico existente
+
+* **arrows**: para añadir flechas a un gráifico existente
+
+* **symbols**: para añadir símbolos a un gráifico existente
+
+* **polygon**: para añadir polígonos a un gráifico existente
+
+Ejemplo:
+
+```{r comment=NA, fig.align="center"}
+x = c(5*(1:10))
+plot(x, c(exp(-x)+(-1)^x*x/2*sin(x)^2),
+     xlab = "",
+     ylab = "",
+     main = "Gráfico con varios elementos")
+
+segments(10, 0, 40, 0, 
+         col = "red",
+         lwd = 4)
+arrows(10, 0, 40, -10,
+       col = "blue",
+       length = 0.5,
+       angle = 5,
+       code = 3)
+symbols(40, 0,
+        stars = cbind(1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5),
+        add = TRUE,
+        lwd = 3,
+        inches = 0.5)
+symbols(40, 0,
+        stars = cbind(1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5),
+        add = TRUE,
+        lwd = 3)
+polygon(c(20, 30, 40), c(10, -10, 10),
+        col = "gold",
+        density = 3,
+        angle = 90,
+        lty = 4,
+        lwd = 5)
+```
+
