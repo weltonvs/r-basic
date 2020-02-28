@@ -1765,34 +1765,10 @@ summary {
 <li><p><strong>tail(DataFrame, n)</strong>: para mostrar las <em>n</em> últimas filas del data frame. Por defecto se muestran las 6 últimas filas.</p></li>
 <li><p><strong>str(DataFrame)</strong>: para conocer la estructura global de un data frame.</p></li>
 <li><p><strong>names(DataFrame)</strong>: para producir un vector con los nombres de las columnas.</p></li>
-<li><p><strong>rownames(DataFrame)</strong>: para producir un vector con los identificadores de las filas.</p>
-<ul>
-<li><code>R</code>entiende siempre que estos identificadores son palabras, aunque sean números, de ahí que los imprima entre comillas.</li>
-</ul></li>
-<li><p><strong>colnames(DataFrame)</strong>: para producir un vector con los identificadores de las columnas.</p></li>
-<li><p><strong>dimnames(DataFrame)</strong>: para producir una lista formada por dos vectores(el de los identificadores de las filas y el de los nombres de las columnas).</p></li>
-<li><p><strong>nrow(DataFrame)</strong>: para consultar el número de filas de una data frame.</p></li>
-<li><p><strong>ncol(DataFrame)</strong>: para consultar el número de columnas de una data frame.</p></li>
-<li><p><strong>dim(DataFrame)</strong>: para producir un vector con el número de filas y el de columnas de una data frame.</p></li>
-<li><p><strong>DataFrame.$nombre_variable</strong>: para obtener una columnas concreta de un data frame</p>
-<ul>
-<li><p>El resultado será un vector o un factor, según cómo esté definida la columna dentro del data frame.</p></li>
-<li><p>Las variables de un data frame son internas, no están definidas en el entorno global de trabajo de <code>R</code>.</p></li>
-</ul></li>
-<li><p><strong>DataFrame[n, m]</strong>: para extraer “trozos” del data frame por filas y columnas(funciona exactamente igual que en matrices) donde <em>n</em> y <em>m</em> pueden definirse como:</p>
-<ul>
-<li><p>intervalos</p></li>
-<li><p>condiciones</p></li>
-<li><p>números naturales</p></li>
-<li><p>no poner nada</p></li>
-<li><p>Si sólo queremos definir la subtabla quédandonos con algunas variables, basta aplicar el nombre del data frame al vector de variables.</p></li>
-<li><p>Estas construcciones se pueden usar tambíen para reordenar las filas o colunmas.</p></li>
-</ul></li>
 </ul>
 </div>
-</div>
-<div id="data-frame-de-iris" class="section level1">
-<h1>Data Frame de Iris</h1>
+<div id="data-frame-de-iris" class="section level2">
+<h2>Data Frame de Iris</h2>
 <p>Añadir una base de datos de iris</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
@@ -1822,8 +1798,8 @@ head(df, 5)#Leer df y sólo muestra los 5 primeros datos</code></pre>
 <p>Para consultar la información básica del Data Frame <strong>df</strong>, es decir, sólo muestra el nombre de las columnas de la tabla.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFtZXMoZGYpXG5gYGAifQ== -->
-<pre class="r"><code>names(df)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFtZXMoZGYpI1BhcmEgdmVyIGxvcyBub21icmVzIGRlIGxhcyB2YXJpYWJsZXMgbyBjb2x1bW5hcyBkZWwgRGF0YSBGcmFtZVxuYGBgIn0= -->
+<pre class="r"><code>names(df)#Para ver los nombres de las variables o columnas del Data Frame</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU2VwYWwuTGVuZ3RoXCIgXCJTZXBhbC5XaWR0aFwiICBcIlBldGFsLkxlbmd0aFwiIFwiUGV0YWwuV2lkdGhcIiAgXCJTcGVjaWVzXCIgICAgIFxuIn0= -->
 <pre><code>[1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;     </code></pre>
@@ -1833,9 +1809,8 @@ head(df, 5)#Leer df y sólo muestra los 5 primeros datos</code></pre>
 <p>Para ver su estructura:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGRmKVxuXG5gYGAifQ== -->
-<pre class="r"><code>str(df)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGRmKSNQYXJhIHZlciBsYSBlc3RydWN0dXJhIGRlbCBEYXRhIEZyYW1lXG5gYGAifQ== -->
+<pre class="r"><code>str(df)#Para ver la estructura del Data Frame</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MTUwIG9icy4gb2YgIDUgdmFyaWFibGVzOlxuICQgU2VwYWwuTGVuZ3RoOiBudW0gIDUuMSA0LjkgNC43IDQuNiA1IDUuNCA0LjYgNSA0LjQgNC45IC4uLlxuICQgU2VwYWwuV2lkdGggOiBudW0gIDMuNSAzIDMuMiAzLjEgMy42IDMuOSAzLjQgMy40IDIuOSAzLjEgLi4uXG4gJCBQZXRhbC5MZW5ndGg6IG51bSAgMS40IDEuNCAxLjMgMS41IDEuNCAxLjcgMS40IDEuNSAxLjQgMS41IC4uLlxuICQgUGV0YWwuV2lkdGggOiBudW0gIDAuMiAwLjIgMC4yIDAuMiAwLjIgMC40IDAuMyAwLjIgMC4yIDAuMSAuLi5cbiAkIFNwZWNpZXMgICAgIDogRmFjdG9yIHcvIDMgbGV2ZWxzIFwic2V0b3NhXCIsXCJ2ZXJzaWNvbG9yXCIsLi46IDEgMSAxIDEgMSAxIDEgMSAxIDEgLi4uXG4ifQ== -->
 <pre><code>&#39;data.frame&#39;:   150 obs. of  5 variables:
@@ -1848,10 +1823,246 @@ head(df, 5)#Leer df y sólo muestra los 5 primeros datos</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Como se puede observar, la estructura tiene 3 vectores numéricos y un factor de 3 niveles.</p>
+</div>
+</div>
+<div id="estructura-y-filtrado-de-data-frame" class="section level1">
+<h1>Estructura y filtrado de data frame</h1>
+<ul>
+<li><p><strong>rownames(DataFrame)</strong>: para producir un vector con los identificadores de las filas.</p>
+<ul>
+<li><code>R</code>entiende siempre que estos identificadores son palabras, aunque sean números, de ahí que los imprima entre comillas.</li>
+</ul></li>
+<li><p><strong>colnames(DataFrame)</strong>: para producir un vector con los identificadores de las columnas.</p></li>
+<li><p><strong>dimnames(DataFrame)</strong>: para producir una lista formada por dos vectores(el de los identificadores de las filas y el de los nombres de las columnas).</p></li>
+<li><p><strong>nrow(DataFrame)</strong>: para consultar el número de filas de una data frame.</p></li>
+<li><p><strong>ncol(DataFrame)</strong>: para consultar el número de columnas de una data frame.</p></li>
+<li><p><strong>dim(DataFrame)</strong>: para producir un vector con el número de filas y el de columnas de una data frame.</p></li>
+<li><p><strong>DataFrame.$nombre_variable</strong>: para obtener una columnas concreta de un data frame</p>
+<ul>
+<li><p>El resultado será un vector o un factor, según cómo esté definida la columna dentro del data frame.</p></li>
+<li><p>Las variables de un data frame son internas, no están definidas en el entorno global de trabajo de <code>R</code>.</p></li>
+</ul></li>
+</ul>
+<p>Ejemplos:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI05vbWVzIGRlIGxhIGVzdHJ1Y3R1cmEgZGUgbGFzIGZpbGFzXG5yb3duYW1lcyhkZilcblxuYGBgIn0= -->
+<pre class="r"><code>#Nomes de la estructura de las filas
+rownames(df)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBbMV0gXCIxXCIgICBcIjJcIiAgIFwiM1wiICAgXCI0XCIgICBcIjVcIiAgIFwiNlwiICAgXCI3XCIgICBcIjhcIiAgIFwiOVwiICAgXCIxMFwiICBcIjExXCIgXG4gWzEyXSBcIjEyXCIgIFwiMTNcIiAgXCIxNFwiICBcIjE1XCIgIFwiMTZcIiAgXCIxN1wiICBcIjE4XCIgIFwiMTlcIiAgXCIyMFwiICBcIjIxXCIgIFwiMjJcIiBcbiBbMjNdIFwiMjNcIiAgXCIyNFwiICBcIjI1XCIgIFwiMjZcIiAgXCIyN1wiICBcIjI4XCIgIFwiMjlcIiAgXCIzMFwiICBcIjMxXCIgIFwiMzJcIiAgXCIzM1wiIFxuIFszNF0gXCIzNFwiICBcIjM1XCIgIFwiMzZcIiAgXCIzN1wiICBcIjM4XCIgIFwiMzlcIiAgXCI0MFwiICBcIjQxXCIgIFwiNDJcIiAgXCI0M1wiICBcIjQ0XCIgXG4gWzQ1XSBcIjQ1XCIgIFwiNDZcIiAgXCI0N1wiICBcIjQ4XCIgIFwiNDlcIiAgXCI1MFwiICBcIjUxXCIgIFwiNTJcIiAgXCI1M1wiICBcIjU0XCIgIFwiNTVcIiBcbiBbNTZdIFwiNTZcIiAgXCI1N1wiICBcIjU4XCIgIFwiNTlcIiAgXCI2MFwiICBcIjYxXCIgIFwiNjJcIiAgXCI2M1wiICBcIjY0XCIgIFwiNjVcIiAgXCI2NlwiIFxuIFs2N10gXCI2N1wiICBcIjY4XCIgIFwiNjlcIiAgXCI3MFwiICBcIjcxXCIgIFwiNzJcIiAgXCI3M1wiICBcIjc0XCIgIFwiNzVcIiAgXCI3NlwiICBcIjc3XCIgXG4gWzc4XSBcIjc4XCIgIFwiNzlcIiAgXCI4MFwiICBcIjgxXCIgIFwiODJcIiAgXCI4M1wiICBcIjg0XCIgIFwiODVcIiAgXCI4NlwiICBcIjg3XCIgIFwiODhcIiBcbiBbODldIFwiODlcIiAgXCI5MFwiICBcIjkxXCIgIFwiOTJcIiAgXCI5M1wiICBcIjk0XCIgIFwiOTVcIiAgXCI5NlwiICBcIjk3XCIgIFwiOThcIiAgXCI5OVwiIFxuWzEwMF0gXCIxMDBcIiBcIjEwMVwiIFwiMTAyXCIgXCIxMDNcIiBcIjEwNFwiIFwiMTA1XCIgXCIxMDZcIiBcIjEwN1wiIFwiMTA4XCIgXCIxMDlcIiBcIjExMFwiXG5bMTExXSBcIjExMVwiIFwiMTEyXCIgXCIxMTNcIiBcIjExNFwiIFwiMTE1XCIgXCIxMTZcIiBcIjExN1wiIFwiMTE4XCIgXCIxMTlcIiBcIjEyMFwiIFwiMTIxXCJcblsxMjJdIFwiMTIyXCIgXCIxMjNcIiBcIjEyNFwiIFwiMTI1XCIgXCIxMjZcIiBcIjEyN1wiIFwiMTI4XCIgXCIxMjlcIiBcIjEzMFwiIFwiMTMxXCIgXCIxMzJcIlxuWzEzM10gXCIxMzNcIiBcIjEzNFwiIFwiMTM1XCIgXCIxMzZcIiBcIjEzN1wiIFwiMTM4XCIgXCIxMzlcIiBcIjE0MFwiIFwiMTQxXCIgXCIxNDJcIiBcIjE0M1wiXG5bMTQ0XSBcIjE0NFwiIFwiMTQ1XCIgXCIxNDZcIiBcIjE0N1wiIFwiMTQ4XCIgXCIxNDlcIiBcIjE1MFwiXG4ifQ== -->
+<pre><code>  [1] &quot;1&quot;   &quot;2&quot;   &quot;3&quot;   &quot;4&quot;   &quot;5&quot;   &quot;6&quot;   &quot;7&quot;   &quot;8&quot;   &quot;9&quot;   &quot;10&quot;  &quot;11&quot; 
+ [12] &quot;12&quot;  &quot;13&quot;  &quot;14&quot;  &quot;15&quot;  &quot;16&quot;  &quot;17&quot;  &quot;18&quot;  &quot;19&quot;  &quot;20&quot;  &quot;21&quot;  &quot;22&quot; 
+ [23] &quot;23&quot;  &quot;24&quot;  &quot;25&quot;  &quot;26&quot;  &quot;27&quot;  &quot;28&quot;  &quot;29&quot;  &quot;30&quot;  &quot;31&quot;  &quot;32&quot;  &quot;33&quot; 
+ [34] &quot;34&quot;  &quot;35&quot;  &quot;36&quot;  &quot;37&quot;  &quot;38&quot;  &quot;39&quot;  &quot;40&quot;  &quot;41&quot;  &quot;42&quot;  &quot;43&quot;  &quot;44&quot; 
+ [45] &quot;45&quot;  &quot;46&quot;  &quot;47&quot;  &quot;48&quot;  &quot;49&quot;  &quot;50&quot;  &quot;51&quot;  &quot;52&quot;  &quot;53&quot;  &quot;54&quot;  &quot;55&quot; 
+ [56] &quot;56&quot;  &quot;57&quot;  &quot;58&quot;  &quot;59&quot;  &quot;60&quot;  &quot;61&quot;  &quot;62&quot;  &quot;63&quot;  &quot;64&quot;  &quot;65&quot;  &quot;66&quot; 
+ [67] &quot;67&quot;  &quot;68&quot;  &quot;69&quot;  &quot;70&quot;  &quot;71&quot;  &quot;72&quot;  &quot;73&quot;  &quot;74&quot;  &quot;75&quot;  &quot;76&quot;  &quot;77&quot; 
+ [78] &quot;78&quot;  &quot;79&quot;  &quot;80&quot;  &quot;81&quot;  &quot;82&quot;  &quot;83&quot;  &quot;84&quot;  &quot;85&quot;  &quot;86&quot;  &quot;87&quot;  &quot;88&quot; 
+ [89] &quot;89&quot;  &quot;90&quot;  &quot;91&quot;  &quot;92&quot;  &quot;93&quot;  &quot;94&quot;  &quot;95&quot;  &quot;96&quot;  &quot;97&quot;  &quot;98&quot;  &quot;99&quot; 
+[100] &quot;100&quot; &quot;101&quot; &quot;102&quot; &quot;103&quot; &quot;104&quot; &quot;105&quot; &quot;106&quot; &quot;107&quot; &quot;108&quot; &quot;109&quot; &quot;110&quot;
+[111] &quot;111&quot; &quot;112&quot; &quot;113&quot; &quot;114&quot; &quot;115&quot; &quot;116&quot; &quot;117&quot; &quot;118&quot; &quot;119&quot; &quot;120&quot; &quot;121&quot;
+[122] &quot;122&quot; &quot;123&quot; &quot;124&quot; &quot;125&quot; &quot;126&quot; &quot;127&quot; &quot;128&quot; &quot;129&quot; &quot;130&quot; &quot;131&quot; &quot;132&quot;
+[133] &quot;133&quot; &quot;134&quot; &quot;135&quot; &quot;136&quot; &quot;137&quot; &quot;138&quot; &quot;139&quot; &quot;140&quot; &quot;141&quot; &quot;142&quot; &quot;143&quot;
+[144] &quot;144&quot; &quot;145&quot; &quot;146&quot; &quot;147&quot; &quot;148&quot; &quot;149&quot; &quot;150&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Los datos que aparece el nombre de los identificadores de las filas. Esos identificadores son lo que aparece a izquierda del data frame</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6MzB9LCJyZGYiOiJINHNJQUFBQUFBQUFCc1ZVeTI3VU1CUjFKL1BNUEVvN0JYYnpCNDFFQyt0R2dpV0xpaTdvMW1ROHJVVklSa2s2c09RMzRFLzZDVWl3WXRWZFA2R29GYUpDR3JEamU2enBoUkZMTEVYSDk5eHpYN2FjRjgrTzk4UGpVQWdSaUtEZEVFSExiRVg3NmVHanZTZDdRalFieHRvUVRkR3orTTZveG1aak5TUHpUZUtkV2IzaThRZTdQc2JibiszNkVtOFR2eVBxRmQrSG4vRmJ4Q01ldXZGK3ZUeHVFVDRrZkVCMW9FY2Y0R0Z6djYrUHZpa2YrdkdJUEpqSG9aOTdRTG91WVkvcWRFay9JTnlrL0gyR0hVTG9oeFFQZjVmbHY4Zk9DM25SeDRqbUFTSVA4cUtma1BtUnY4L3l3YWE1TVBmQmR4ZnY4Y2JsUGZqaDRqei8wOFY3bS90aEEyOWRIZS8vUnZZMTVZRU85WGdkK0xsOXhmZ2x4YUVla1BkM3krYitSTHAvNFFYaFY2ckgvZWRyNHM3WCtDOFlJaTlIcm9kOVNYT3Q2M1BOSE9hZEQrM2M5ZVAvTDkrZEgwODdWUXVWbG1abjMwRUF0bFJWWGtxeXdvVXFTcDNrYVY0UTAxdm80a1JuT3BFc1hTdEpaWWxzdnNaTUpwV0pGV0xKNVpsOG95QnZFVGs0VW5PWlJzOVZkbEtkRXRkMzNFczk5ZFRnVUZWL3lCeTNLdXNjelZXaWJaRTdsWHRGL2paQ2RYc2hqZmZ1UGlkT0dQeGlRNFJUV2Nsb1ZwaVF2d3pTeWVlVnpqT1RySUcvK0dyd1JzR0l6YlBNRnAvdUpxZG4yZXZkeDdiQXlpME5DU2NyKzVZcjJVUmpPSzYyT1FDZEtaeG9LbCtwbEl5UkdiS2VNWm9YT3Fzd2lXSExxTXJOU1lFeGR3dW1uazBzZndPZDR5MTl2UVlBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"},{"1":"4.6","2":"3.4","3":"1.4","4":"0.3","5":"setosa","_rn_":"7"},{"1":"5.0","2":"3.4","3":"1.5","4":"0.2","5":"setosa","_rn_":"8"},{"1":"4.4","2":"2.9","3":"1.4","4":"0.2","5":"setosa","_rn_":"9"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.1","5":"setosa","_rn_":"10"},{"1":"5.4","2":"3.7","3":"1.5","4":"0.2","5":"setosa","_rn_":"11"},{"1":"4.8","2":"3.4","3":"1.6","4":"0.2","5":"setosa","_rn_":"12"},{"1":"4.8","2":"3.0","3":"1.4","4":"0.1","5":"setosa","_rn_":"13"},{"1":"4.3","2":"3.0","3":"1.1","4":"0.1","5":"setosa","_rn_":"14"},{"1":"5.8","2":"4.0","3":"1.2","4":"0.2","5":"setosa","_rn_":"15"},{"1":"5.7","2":"4.4","3":"1.5","4":"0.4","5":"setosa","_rn_":"16"},{"1":"5.4","2":"3.9","3":"1.3","4":"0.4","5":"setosa","_rn_":"17"},{"1":"5.1","2":"3.5","3":"1.4","4":"0.3","5":"setosa","_rn_":"18"},{"1":"5.7","2":"3.8","3":"1.7","4":"0.3","5":"setosa","_rn_":"19"},{"1":"5.1","2":"3.8","3":"1.5","4":"0.3","5":"setosa","_rn_":"20"},{"1":"5.4","2":"3.4","3":"1.7","4":"0.2","5":"setosa","_rn_":"21"},{"1":"5.1","2":"3.7","3":"1.5","4":"0.4","5":"setosa","_rn_":"22"},{"1":"4.6","2":"3.6","3":"1.0","4":"0.2","5":"setosa","_rn_":"23"},{"1":"5.1","2":"3.3","3":"1.7","4":"0.5","5":"setosa","_rn_":"24"},{"1":"4.8","2":"3.4","3":"1.9","4":"0.2","5":"setosa","_rn_":"25"},{"1":"5.0","2":"3.0","3":"1.6","4":"0.2","5":"setosa","_rn_":"26"},{"1":"5.0","2":"3.4","3":"1.6","4":"0.4","5":"setosa","_rn_":"27"},{"1":"5.2","2":"3.5","3":"1.5","4":"0.2","5":"setosa","_rn_":"28"},{"1":"5.2","2":"3.4","3":"1.4","4":"0.2","5":"setosa","_rn_":"29"},{"1":"4.7","2":"3.2","3":"1.6","4":"0.2","5":"setosa","_rn_":"30"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[30]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI05vbWJyZXMgZGUgbGEgZXN0cnVjdHVyYSBkZSBsYXMgY29sdW1uYXNcbmNvbG5hbWVzKGRmKVxuXG5gYGAifQ== -->
+<pre class="r"><code>#Nombres de la estructura de las columnas
+colnames(df)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiU2VwYWwuTGVuZ3RoXCIgXCJTZXBhbC5XaWR0aFwiICBcIlBldGFsLkxlbmd0aFwiIFwiUGV0YWwuV2lkdGhcIiAgXCJTcGVjaWVzXCIgICAgIFxuIn0= -->
+<pre><code>[1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Species&quot;     </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Los datos que aparece el nombre de los identificadores de las columnas. Esos identificadores son lo que aparece a la parte de arriba del data frame</p>
+<p>Para ver que los datos de nombres de fila o columna siempre devuelve un vector, basta pedir la información completa como en el ejemplo a continuación:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGltbmFtZXMoZGYpXG5cbmBgYCJ9 -->
+<pre class="r"><code>dimnames(df)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiAgWzFdIFwiMVwiICAgXCIyXCIgICBcIjNcIiAgIFwiNFwiICAgXCI1XCIgICBcIjZcIiAgIFwiN1wiICAgXCI4XCIgICBcIjlcIiAgIFwiMTBcIiAgXCIxMVwiIFxuIFsxMl0gXCIxMlwiICBcIjEzXCIgIFwiMTRcIiAgXCIxNVwiICBcIjE2XCIgIFwiMTdcIiAgXCIxOFwiICBcIjE5XCIgIFwiMjBcIiAgXCIyMVwiICBcIjIyXCIgXG4gWzIzXSBcIjIzXCIgIFwiMjRcIiAgXCIyNVwiICBcIjI2XCIgIFwiMjdcIiAgXCIyOFwiICBcIjI5XCIgIFwiMzBcIiAgXCIzMVwiICBcIjMyXCIgIFwiMzNcIiBcbiBbMzRdIFwiMzRcIiAgXCIzNVwiICBcIjM2XCIgIFwiMzdcIiAgXCIzOFwiICBcIjM5XCIgIFwiNDBcIiAgXCI0MVwiICBcIjQyXCIgIFwiNDNcIiAgXCI0NFwiIFxuIFs0NV0gXCI0NVwiICBcIjQ2XCIgIFwiNDdcIiAgXCI0OFwiICBcIjQ5XCIgIFwiNTBcIiAgXCI1MVwiICBcIjUyXCIgIFwiNTNcIiAgXCI1NFwiICBcIjU1XCIgXG4gWzU2XSBcIjU2XCIgIFwiNTdcIiAgXCI1OFwiICBcIjU5XCIgIFwiNjBcIiAgXCI2MVwiICBcIjYyXCIgIFwiNjNcIiAgXCI2NFwiICBcIjY1XCIgIFwiNjZcIiBcbiBbNjddIFwiNjdcIiAgXCI2OFwiICBcIjY5XCIgIFwiNzBcIiAgXCI3MVwiICBcIjcyXCIgIFwiNzNcIiAgXCI3NFwiICBcIjc1XCIgIFwiNzZcIiAgXCI3N1wiIFxuIFs3OF0gXCI3OFwiICBcIjc5XCIgIFwiODBcIiAgXCI4MVwiICBcIjgyXCIgIFwiODNcIiAgXCI4NFwiICBcIjg1XCIgIFwiODZcIiAgXCI4N1wiICBcIjg4XCIgXG4gWzg5XSBcIjg5XCIgIFwiOTBcIiAgXCI5MVwiICBcIjkyXCIgIFwiOTNcIiAgXCI5NFwiICBcIjk1XCIgIFwiOTZcIiAgXCI5N1wiICBcIjk4XCIgIFwiOTlcIiBcblsxMDBdIFwiMTAwXCIgXCIxMDFcIiBcIjEwMlwiIFwiMTAzXCIgXCIxMDRcIiBcIjEwNVwiIFwiMTA2XCIgXCIxMDdcIiBcIjEwOFwiIFwiMTA5XCIgXCIxMTBcIlxuWzExMV0gXCIxMTFcIiBcIjExMlwiIFwiMTEzXCIgXCIxMTRcIiBcIjExNVwiIFwiMTE2XCIgXCIxMTdcIiBcIjExOFwiIFwiMTE5XCIgXCIxMjBcIiBcIjEyMVwiXG5bMTIyXSBcIjEyMlwiIFwiMTIzXCIgXCIxMjRcIiBcIjEyNVwiIFwiMTI2XCIgXCIxMjdcIiBcIjEyOFwiIFwiMTI5XCIgXCIxMzBcIiBcIjEzMVwiIFwiMTMyXCJcblsxMzNdIFwiMTMzXCIgXCIxMzRcIiBcIjEzNVwiIFwiMTM2XCIgXCIxMzdcIiBcIjEzOFwiIFwiMTM5XCIgXCIxNDBcIiBcIjE0MVwiIFwiMTQyXCIgXCIxNDNcIlxuWzE0NF0gXCIxNDRcIiBcIjE0NVwiIFwiMTQ2XCIgXCIxNDdcIiBcIjE0OFwiIFwiMTQ5XCIgXCIxNTBcIlxuXG5bWzJdXVxuWzFdIFwiU2VwYWwuTGVuZ3RoXCIgXCJTZXBhbC5XaWR0aFwiICBcIlBldGFsLkxlbmd0aFwiIFwiUGV0YWwuV2lkdGhcIiBcbls1XSBcIlNwZWNpZXNcIiAgICAgXG4ifQ== -->
+<pre><code>[[1]]
+  [1] &quot;1&quot;   &quot;2&quot;   &quot;3&quot;   &quot;4&quot;   &quot;5&quot;   &quot;6&quot;   &quot;7&quot;   &quot;8&quot;   &quot;9&quot;   &quot;10&quot;  &quot;11&quot; 
+ [12] &quot;12&quot;  &quot;13&quot;  &quot;14&quot;  &quot;15&quot;  &quot;16&quot;  &quot;17&quot;  &quot;18&quot;  &quot;19&quot;  &quot;20&quot;  &quot;21&quot;  &quot;22&quot; 
+ [23] &quot;23&quot;  &quot;24&quot;  &quot;25&quot;  &quot;26&quot;  &quot;27&quot;  &quot;28&quot;  &quot;29&quot;  &quot;30&quot;  &quot;31&quot;  &quot;32&quot;  &quot;33&quot; 
+ [34] &quot;34&quot;  &quot;35&quot;  &quot;36&quot;  &quot;37&quot;  &quot;38&quot;  &quot;39&quot;  &quot;40&quot;  &quot;41&quot;  &quot;42&quot;  &quot;43&quot;  &quot;44&quot; 
+ [45] &quot;45&quot;  &quot;46&quot;  &quot;47&quot;  &quot;48&quot;  &quot;49&quot;  &quot;50&quot;  &quot;51&quot;  &quot;52&quot;  &quot;53&quot;  &quot;54&quot;  &quot;55&quot; 
+ [56] &quot;56&quot;  &quot;57&quot;  &quot;58&quot;  &quot;59&quot;  &quot;60&quot;  &quot;61&quot;  &quot;62&quot;  &quot;63&quot;  &quot;64&quot;  &quot;65&quot;  &quot;66&quot; 
+ [67] &quot;67&quot;  &quot;68&quot;  &quot;69&quot;  &quot;70&quot;  &quot;71&quot;  &quot;72&quot;  &quot;73&quot;  &quot;74&quot;  &quot;75&quot;  &quot;76&quot;  &quot;77&quot; 
+ [78] &quot;78&quot;  &quot;79&quot;  &quot;80&quot;  &quot;81&quot;  &quot;82&quot;  &quot;83&quot;  &quot;84&quot;  &quot;85&quot;  &quot;86&quot;  &quot;87&quot;  &quot;88&quot; 
+ [89] &quot;89&quot;  &quot;90&quot;  &quot;91&quot;  &quot;92&quot;  &quot;93&quot;  &quot;94&quot;  &quot;95&quot;  &quot;96&quot;  &quot;97&quot;  &quot;98&quot;  &quot;99&quot; 
+[100] &quot;100&quot; &quot;101&quot; &quot;102&quot; &quot;103&quot; &quot;104&quot; &quot;105&quot; &quot;106&quot; &quot;107&quot; &quot;108&quot; &quot;109&quot; &quot;110&quot;
+[111] &quot;111&quot; &quot;112&quot; &quot;113&quot; &quot;114&quot; &quot;115&quot; &quot;116&quot; &quot;117&quot; &quot;118&quot; &quot;119&quot; &quot;120&quot; &quot;121&quot;
+[122] &quot;122&quot; &quot;123&quot; &quot;124&quot; &quot;125&quot; &quot;126&quot; &quot;127&quot; &quot;128&quot; &quot;129&quot; &quot;130&quot; &quot;131&quot; &quot;132&quot;
+[133] &quot;133&quot; &quot;134&quot; &quot;135&quot; &quot;136&quot; &quot;137&quot; &quot;138&quot; &quot;139&quot; &quot;140&quot; &quot;141&quot; &quot;142&quot; &quot;143&quot;
+[144] &quot;144&quot; &quot;145&quot; &quot;146&quot; &quot;147&quot; &quot;148&quot; &quot;149&quot; &quot;150&quot;
+
+[[2]]
+[1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot; 
+[5] &quot;Species&quot;     </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Como se aprecia, es un vector bidimensional (matriz), donde una dimensión son los identificadores de las filas y la otra dimensión son los identificadores de las columnas.</p>
+<p>Para saber el número de filas:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnJvdyhkZilcbmBgYCJ9 -->
+<pre class="r"><code>nrow(df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE1MFxuIn0= -->
+<pre><code>[1] 150</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Para saber el número de columnas:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnJvdyhkZilcbmBgYCJ9 -->
+<pre class="r"><code>nrow(df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Para saber el número de filas y columnas en una única consulata:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGltKGRmKVxuXG5gYGAifQ== -->
+<pre class="r"><code>dim(df)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE1MCAgIDVcbiJ9 -->
+<pre><code>[1] 150   5</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Como se observa, devuelve un vector con dos posiciones, donde la posición cero indica la longitud de las filas y en la posición uno indica la longitud de columnas.</p>
+<p>Para poder acceder a una componente en concreto del data frame. El resultado puede ser un vector o un factor, eso va depender del tipo de dato que esté almacenado.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0FjY2VkZXIgdG9kb3MgbG9zIGRhdG9zIGRlIHZhcmlhYmxlIGRlIG5vbWJyZSBTZXBhbFxuZGYkU2VwYWwuTGVuZ3RoXG5cbmBgYCJ9 -->
+<pre class="r"><code>#Acceder todos los datos de variable de nombre Sepal
+df$Sepal.Length
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBbMV0gNS4xIDQuOSA0LjcgNC42IDUuMCA1LjQgNC42IDUuMCA0LjQgNC45IDUuNCA0LjggNC44IDQuMyA1LjggNS43XG4gWzE3XSA1LjQgNS4xIDUuNyA1LjEgNS40IDUuMSA0LjYgNS4xIDQuOCA1LjAgNS4wIDUuMiA1LjIgNC43IDQuOCA1LjRcbiBbMzNdIDUuMiA1LjUgNC45IDUuMCA1LjUgNC45IDQuNCA1LjEgNS4wIDQuNSA0LjQgNS4wIDUuMSA0LjggNS4xIDQuNlxuIFs0OV0gNS4zIDUuMCA3LjAgNi40IDYuOSA1LjUgNi41IDUuNyA2LjMgNC45IDYuNiA1LjIgNS4wIDUuOSA2LjAgNi4xXG4gWzY1XSA1LjYgNi43IDUuNiA1LjggNi4yIDUuNiA1LjkgNi4xIDYuMyA2LjEgNi40IDYuNiA2LjggNi43IDYuMCA1LjdcbiBbODFdIDUuNSA1LjUgNS44IDYuMCA1LjQgNi4wIDYuNyA2LjMgNS42IDUuNSA1LjUgNi4xIDUuOCA1LjAgNS42IDUuN1xuIFs5N10gNS43IDYuMiA1LjEgNS43IDYuMyA1LjggNy4xIDYuMyA2LjUgNy42IDQuOSA3LjMgNi43IDcuMiA2LjUgNi40XG5bMTEzXSA2LjggNS43IDUuOCA2LjQgNi41IDcuNyA3LjcgNi4wIDYuOSA1LjYgNy43IDYuMyA2LjcgNy4yIDYuMiA2LjFcblsxMjldIDYuNCA3LjIgNy40IDcuOSA2LjQgNi4zIDYuMSA3LjcgNi4zIDYuNCA2LjAgNi45IDYuNyA2LjkgNS44IDYuOFxuWzE0NV0gNi43IDYuNyA2LjMgNi41IDYuMiA1LjlcbiJ9 -->
+<pre><code>  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7
+ [17] 5.4 5.1 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4
+ [33] 5.2 5.5 4.9 5.0 5.5 4.9 4.4 5.1 5.0 4.5 4.4 5.0 5.1 4.8 5.1 4.6
+ [49] 5.3 5.0 7.0 6.4 6.9 5.5 6.5 5.7 6.3 4.9 6.6 5.2 5.0 5.9 6.0 6.1
+ [65] 5.6 6.7 5.6 5.8 6.2 5.6 5.9 6.1 6.3 6.1 6.4 6.6 6.8 6.7 6.0 5.7
+ [81] 5.5 5.5 5.8 6.0 5.4 6.0 6.7 6.3 5.6 5.5 5.5 6.1 5.8 5.0 5.6 5.7
+ [97] 5.7 6.2 5.1 5.7 6.3 5.8 7.1 6.3 6.5 7.6 4.9 7.3 6.7 7.2 6.5 6.4
+[113] 6.8 5.7 5.8 6.4 6.5 7.7 7.7 6.0 6.9 5.6 7.7 6.3 6.7 7.2 6.2 6.1
+[129] 6.4 7.2 7.4 7.9 6.4 6.3 6.1 7.7 6.3 6.4 6.0 6.9 6.7 6.9 5.8 6.8
+[145] 6.7 6.7 6.3 6.5 6.2 5.9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Se puede acceder solamente a una cantidad especificada</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGYkU2VwYWwuTGVuZ3RoWzE6MTBdXG5cbmBgYCJ9 -->
+<pre class="r"><code>df$Sepal.Length[1:10]
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSA1LjEgNC45IDQuNyA0LjYgNS4wIDUuNCA0LjYgNS4wIDQuNCA0LjlcbiJ9 -->
+<pre><code> [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="sub-data-frames" class="section level2">
+<h2>Sub-data frames</h2>
+<ul>
+<li><p><strong>DataFrame[n, m]</strong>: para extraer “trozos” del data frame por filas y columnas(funciona exactamente igual que en matrices) donde <em>n</em> y <em>m</em> pueden definirse como:</p>
+<ul>
+<li><p>intervalos</p></li>
+<li><p>condiciones</p></li>
+<li><p>números naturales</p></li>
+<li><p>no poner nada</p></li>
+<li><p>Si sólo queremos definir la subtabla quédandonos con algunas variables, basta aplicar el nombre del data frame al vector de variables.</p></li>
+<li><p>Estas construcciones se pueden usar tambíen para reordenar las filas o colunmas.</p></li>
+</ul></li>
+</ul>
+<p>De esa forma se puede acceder a los datos del data frame de forma personalizada.</p>
+<p>Ejemplos:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6MTB9LCJyZGYiOiJINHNJQUFBQUFBQUFCbzFTd1U3Q1FCQmRLQzIwRkZEQXo2QUpFTTgwMGFNSElnZTVybVdCamFWdDJvSWUvUTM5RXovQlJFK2UvQTlqVEV6UTNlN3NCbFlUbmFTWm5UZHYzdXpNOXZ4ME9uU21Ea0xJUUlaVlJvYkpqc2c2R2ZjSHh3T0VLbVVXbFZBRjJkemZNRmFISFRpbnlUN0g3ODRMOHp0MzNPNzk5aE8zWjc4TmVCY1Y1aC9KdklZZkFnNzFTdGVGZkEyOERid2E2THZnVzhQQy9Mcm1xK0NCTDNWSDc2Sy84bThpUC9vUWZSVCtLZXBWck9jaFZycVA0bjUvK2xmd0w2Q3Y1eC9rSG93RzF5MlcvNjl2NzZHc2tHeEltTEhUUWZHd2dHWWtqek1Na2JNaGFVYURPSXhUUU93TlRSYzBvZ0hXNU13Z3hKbFVVejNtT01oWkxVSmJuUjdoRlpGMEUwQjNRaEljZW1ja1d1Ukx3T29DdTZBekJibGprditnQ1d5WFZwMGtKS0M4eVY1bk80MnZQZG1kTDdCOEt4N0pFVVRqU3h2Q21lRWNlL09VbGZ3eVNEVk9jaHBIVEt6TS8zcExVUFlFU3FrR3ROWVJ2OENzRnl6WDBWV3ZyNzFpQTd5emN6WkYyNHE4bkNYYkIvRnFSYUpjTHB6dGhFWkVMam5FbHlTRW9Nbm1Mc2Iya3BTcUFvZWhtWmZIYkhrU1ljOHRFVEhMOWh0UWZWNC9BQVFBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"},{"1":"4.6","2":"3.4","3":"1.4","4":"0.3","5":"setosa","_rn_":"7"},{"1":"5.0","2":"3.4","3":"1.5","4":"0.2","5":"setosa","_rn_":"8"},{"1":"4.4","2":"2.9","3":"1.4","4":"0.2","5":"setosa","_rn_":"9"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.1","5":"setosa","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6MTUwfSwicmRmIjoiSDRzSUFBQUFBQUFBQm9XWDMwNFRVUkRHRC8xSHU1UlNLSlJTUUorQUprSzhwb2xlZWtIMFFtNXJLZEpZdHFTVTZLVlBRYUxQcE8raTBSaU5DYnJ0em0rUWoyemNwSm5PdjIrK21YTjI5K3p6cDhjSDBYRVVRc2lIZkNrWDhzWGtieWc5T1hxMC8zZy9oRUl1MFJaQ0lWUm04bDBTMVppSGhsQkxmdGZkOWRQNTFXMThtRjBmdTJ1Zlp0Zm43cHJaMThQODZtN2dGL3VxMmNrbnJuRXd2MXl1bXR3MDJiUTZ4TU1ETzdyNnZUNjhEUTgrTHNHaEg1UEVPNjdabTVaSEgrQ29mVlg0RUxjbTgzQWV5bFA2MkJEK095YTNER2ZiSkR6YThETGVXOHpaNHRyd29uK0wzelIveS9RVzh6YlpaZzZtczA0dHRZTmpPdlZkRng3YjVnZS9KZnpwQytsMVpkK2h0NlZ2ZUNsT1Mvcnc5WlI5aHFSUDNZZlVBV2RIK21ZOUhzaDl0Q3Q5NzVnazN0ZFg3Z2ZxK0J6Qk56K1NlZmorc1BvUGhMZldwMDlkTC95N3BqODBpVi9YV2V0c3lUckJpL3JvOUtmN1F0ZVZ2dUZyKzg2ZlcxWHpsMDFXREw5czhWV1RLNGEzSkhMUkpQSExsbysvTFBoMXViL0JoVWZONW9JRUIxejRST0lIZjBudzBMVXY3SFhEcVpzZFAvSGdVRGVyVHM1d05JOCt5cUlUUjErUjJKVXYrQ1dSNU9WbFBZcVdIMlQrQzJaZmxQaXk5RWMrOFFYWkg5VEhqdTU0WWtmSFg3QjY4TTRMYjZUT1crZUJIeDRGNmFNZzhZcXJjOUIrb3YvazZmNHVpQis5S3Z0SzhiUnVSZnpzRy9waFhYUTlTc0pYOTVXdVI1WmVFenhmNzR6N1FQZVA2eUtMd2p1UytzemhIbjdnbWorM0RuK2tlUzYvcC9pSFA5TWd0LzlPODExWFB6cnlWOHJML1Y5Ti8yWTR4RkZQNitCWC9ZdllieXlQZWtqbGwrWFA2Z09leWsvbmc2NlNPdkJUSGhsenZEM3YycnJ4L3E2Ynpqa05QL0dzUDM1OUgvQmNya3NlOXhQdkVYRHJVZ2U4QnM5NzRRY2U1Mm8vaDV1dTUxSjlydlA4cHM2NjlpbTh3ZmYzanZtOUQ3RXpINStEU0hqNys5WGlPVC9BaC9ObUU5M3kyc0pYejJtY1Uvdzd3dXljRC9WOHJuNDl0L2o1MGV4KzNoYmR6NU9zRit1WTBZZWV3NXJDRzEzUDYwM0IzOGpJdnpkSDQ2ZmZCK2p5dlNVZmtNVzRkejY0VFA3TWxqbHZ4dXFMd1VWdjFIazJpRjlQejh5MmxOcGVEay9jVkQwYVRHL0Q3dUpXSnVPM0hiQ1hrMS91ZmNycldnbjBSNzFMQ0dDTVRuclRYdWQwa3VRbjJvMmtMSTR2cHNOeG5DVGxacCsrcFRUa0RzRENSQXdyVi9HTXpjbGUvK3dxZnJOM01Dc3lkNmZYc3YyLy91ZC9QaTJiKzJOUUpjcjN4K2ZuZzNocWFpbHBmeGdQYUdmVWV6VVltVkpMaGpDZlFlZGlNdlNFS0xGZWRxYmpaSFpZK3VNUmxyU1htNy9HTVBlckJSQUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4"},{"1":"4.9","2":"3.0","3":"1.4"},{"1":"4.7","2":"3.2","3":"1.3"},{"1":"4.6","2":"3.1","3":"1.5"},{"1":"5.0","2":"3.6","3":"1.4"},{"1":"5.4","2":"3.9","3":"1.7"},{"1":"4.6","2":"3.4","3":"1.4"},{"1":"5.0","2":"3.4","3":"1.5"},{"1":"4.4","2":"2.9","3":"1.4"},{"1":"4.9","2":"3.1","3":"1.5"},{"1":"5.4","2":"3.7","3":"1.5"},{"1":"4.8","2":"3.4","3":"1.6"},{"1":"4.8","2":"3.0","3":"1.4"},{"1":"4.3","2":"3.0","3":"1.1"},{"1":"5.8","2":"4.0","3":"1.2"},{"1":"5.7","2":"4.4","3":"1.5"},{"1":"5.4","2":"3.9","3":"1.3"},{"1":"5.1","2":"3.5","3":"1.4"},{"1":"5.7","2":"3.8","3":"1.7"},{"1":"5.1","2":"3.8","3":"1.5"},{"1":"5.4","2":"3.4","3":"1.7"},{"1":"5.1","2":"3.7","3":"1.5"},{"1":"4.6","2":"3.6","3":"1.0"},{"1":"5.1","2":"3.3","3":"1.7"},{"1":"4.8","2":"3.4","3":"1.9"},{"1":"5.0","2":"3.0","3":"1.6"},{"1":"5.0","2":"3.4","3":"1.6"},{"1":"5.2","2":"3.5","3":"1.5"},{"1":"5.2","2":"3.4","3":"1.4"},{"1":"4.7","2":"3.2","3":"1.6"},{"1":"4.8","2":"3.1","3":"1.6"},{"1":"5.4","2":"3.4","3":"1.5"},{"1":"5.2","2":"4.1","3":"1.5"},{"1":"5.5","2":"4.2","3":"1.4"},{"1":"4.9","2":"3.1","3":"1.5"},{"1":"5.0","2":"3.2","3":"1.2"},{"1":"5.5","2":"3.5","3":"1.3"},{"1":"4.9","2":"3.6","3":"1.4"},{"1":"4.4","2":"3.0","3":"1.3"},{"1":"5.1","2":"3.4","3":"1.5"},{"1":"5.0","2":"3.5","3":"1.3"},{"1":"4.5","2":"2.3","3":"1.3"},{"1":"4.4","2":"3.2","3":"1.3"},{"1":"5.0","2":"3.5","3":"1.6"},{"1":"5.1","2":"3.8","3":"1.9"},{"1":"4.8","2":"3.0","3":"1.4"},{"1":"5.1","2":"3.8","3":"1.6"},{"1":"4.6","2":"3.2","3":"1.4"},{"1":"5.3","2":"3.7","3":"1.5"},{"1":"5.0","2":"3.3","3":"1.4"},{"1":"7.0","2":"3.2","3":"4.7"},{"1":"6.4","2":"3.2","3":"4.5"},{"1":"6.9","2":"3.1","3":"4.9"},{"1":"5.5","2":"2.3","3":"4.0"},{"1":"6.5","2":"2.8","3":"4.6"},{"1":"5.7","2":"2.8","3":"4.5"},{"1":"6.3","2":"3.3","3":"4.7"},{"1":"4.9","2":"2.4","3":"3.3"},{"1":"6.6","2":"2.9","3":"4.6"},{"1":"5.2","2":"2.7","3":"3.9"},{"1":"5.0","2":"2.0","3":"3.5"},{"1":"5.9","2":"3.0","3":"4.2"},{"1":"6.0","2":"2.2","3":"4.0"},{"1":"6.1","2":"2.9","3":"4.7"},{"1":"5.6","2":"2.9","3":"3.6"},{"1":"6.7","2":"3.1","3":"4.4"},{"1":"5.6","2":"3.0","3":"4.5"},{"1":"5.8","2":"2.7","3":"4.1"},{"1":"6.2","2":"2.2","3":"4.5"},{"1":"5.6","2":"2.5","3":"3.9"},{"1":"5.9","2":"3.2","3":"4.8"},{"1":"6.1","2":"2.8","3":"4.0"},{"1":"6.3","2":"2.5","3":"4.9"},{"1":"6.1","2":"2.8","3":"4.7"},{"1":"6.4","2":"2.9","3":"4.3"},{"1":"6.6","2":"3.0","3":"4.4"},{"1":"6.8","2":"2.8","3":"4.8"},{"1":"6.7","2":"3.0","3":"5.0"},{"1":"6.0","2":"2.9","3":"4.5"},{"1":"5.7","2":"2.6","3":"3.5"},{"1":"5.5","2":"2.4","3":"3.8"},{"1":"5.5","2":"2.4","3":"3.7"},{"1":"5.8","2":"2.7","3":"3.9"},{"1":"6.0","2":"2.7","3":"5.1"},{"1":"5.4","2":"3.0","3":"4.5"},{"1":"6.0","2":"3.4","3":"4.5"},{"1":"6.7","2":"3.1","3":"4.7"},{"1":"6.3","2":"2.3","3":"4.4"},{"1":"5.6","2":"3.0","3":"4.1"},{"1":"5.5","2":"2.5","3":"4.0"},{"1":"5.5","2":"2.6","3":"4.4"},{"1":"6.1","2":"3.0","3":"4.6"},{"1":"5.8","2":"2.6","3":"4.0"},{"1":"5.0","2":"2.3","3":"3.3"},{"1":"5.6","2":"2.7","3":"4.2"},{"1":"5.7","2":"3.0","3":"4.2"},{"1":"5.7","2":"2.9","3":"4.2"},{"1":"6.2","2":"2.9","3":"4.3"},{"1":"5.1","2":"2.5","3":"3.0"},{"1":"5.7","2":"2.8","3":"4.1"},{"1":"6.3","2":"3.3","3":"6.0"},{"1":"5.8","2":"2.7","3":"5.1"},{"1":"7.1","2":"3.0","3":"5.9"},{"1":"6.3","2":"2.9","3":"5.6"},{"1":"6.5","2":"3.0","3":"5.8"},{"1":"7.6","2":"3.0","3":"6.6"},{"1":"4.9","2":"2.5","3":"4.5"},{"1":"7.3","2":"2.9","3":"6.3"},{"1":"6.7","2":"2.5","3":"5.8"},{"1":"7.2","2":"3.6","3":"6.1"},{"1":"6.5","2":"3.2","3":"5.1"},{"1":"6.4","2":"2.7","3":"5.3"},{"1":"6.8","2":"3.0","3":"5.5"},{"1":"5.7","2":"2.5","3":"5.0"},{"1":"5.8","2":"2.8","3":"5.1"},{"1":"6.4","2":"3.2","3":"5.3"},{"1":"6.5","2":"3.0","3":"5.5"},{"1":"7.7","2":"3.8","3":"6.7"},{"1":"7.7","2":"2.6","3":"6.9"},{"1":"6.0","2":"2.2","3":"5.0"},{"1":"6.9","2":"3.2","3":"5.7"},{"1":"5.6","2":"2.8","3":"4.9"},{"1":"7.7","2":"2.8","3":"6.7"},{"1":"6.3","2":"2.7","3":"4.9"},{"1":"6.7","2":"3.3","3":"5.7"},{"1":"7.2","2":"3.2","3":"6.0"},{"1":"6.2","2":"2.8","3":"4.8"},{"1":"6.1","2":"3.0","3":"4.9"},{"1":"6.4","2":"2.8","3":"5.6"},{"1":"7.2","2":"3.0","3":"5.8"},{"1":"7.4","2":"2.8","3":"6.1"},{"1":"7.9","2":"3.8","3":"6.4"},{"1":"6.4","2":"2.8","3":"5.6"},{"1":"6.3","2":"2.8","3":"5.1"},{"1":"6.1","2":"2.6","3":"5.6"},{"1":"7.7","2":"3.0","3":"6.1"},{"1":"6.3","2":"3.4","3":"5.6"},{"1":"6.4","2":"3.1","3":"5.5"},{"1":"6.0","2":"3.0","3":"4.8"},{"1":"6.9","2":"3.1","3":"5.4"},{"1":"6.7","2":"3.1","3":"5.6"},{"1":"6.9","2":"3.1","3":"5.1"},{"1":"5.8","2":"2.7","3":"5.1"},{"1":"6.8","2":"3.2","3":"5.9"},{"1":"6.7","2":"3.3","3":"5.7"},{"1":"6.7","2":"3.0","3":"5.2"},{"1":"6.3","2":"2.5","3":"5.0"},{"1":"6.5","2":"3.0","3":"5.2"},{"1":"6.2","2":"3.4","3":"5.4"},{"1":"5.9","2":"3.0","3":"5.1"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[150]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6MTB9LCJyZGYiOiJINHNJQUFBQUFBQUFCb1ZSd1VyRFFCQ2RKbTNhYk5KVzhEc2FzTlZ6QTNyMFVQUmdyekhaMm1DeUNVbUtIdjBOL1JNL1FkQlRULzZIaUNCVUo1bmRZUGZpd1BKbTNzeTgyWjI5T0Z2TzJKSUJnQW1tWllEWlF4ZXMwOFhSOUdRSzBEVXc2a0FYN0JydnNlcXdLUVVZNFdHK0M0MzVBNG4yWTIxUC91QzF0amZmbFRpZU5lWTdHdllseW5xbE8vOWNOZGJpQitYblh6U241YitwdjQzMXZJeGIzUmU2MzcvNExuRXI5Zlg4TTZHMm9KNElVbDZpYzlBc2lVam5rdWRCNGwzRlViV1dsTHZnRlZMblhOeTBuRU1jbGUzTDJrVjI1eW5wSVI3amdkN0U5UGxoRXBScXZpSlpGRlNCdHlxd0g2T2QxdExQOGlyT0JEWVo5YzlhVkxJbjBDazBZcndSOVcyaVNiamVpTnZKTWQwRTAzU0dFdGtmMzZTeHhvK1VzdFQ0TUV0VExpb1pXcmlSV0hEMW5DUzQ1b2tNUnJpRVpnZGVYc1J0QTBPMjlLb01WNmVZTUVzVVEyL1ovUUsrWHdoYzVBSUFBQT09In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Width"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"3.5","2":"1.4","3":"0.2","_rn_":"1"},{"1":"3.0","2":"1.4","3":"0.2","_rn_":"2"},{"1":"3.2","2":"1.3","3":"0.2","_rn_":"3"},{"1":"3.1","2":"1.5","3":"0.2","_rn_":"4"},{"1":"3.6","2":"1.4","3":"0.2","_rn_":"5"},{"1":"3.9","2":"1.7","3":"0.4","_rn_":"6"},{"1":"3.4","2":"1.4","3":"0.3","_rn_":"7"},{"1":"3.4","2":"1.5","3":"0.2","_rn_":"8"},{"1":"2.9","2":"1.4","3":"0.2","_rn_":"9"},{"1":"3.1","2":"1.5","3":"0.1","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJtMVJ6VTRDTVJBdUxMdUVGUlNqNGE1M05oSERtVTMwNklISVFhNjFGR2dzN2FaYjBGZlJOL0VSVFBRQmZCSGpDWjF1Mncyc1R0TE16RGZmL1BiMmVub1pUMk9FVUlDQ3FJNkNFRXdVWFkwdkJzTUJRbzA2ZURYVVFDMmpuNEIxQW9iaEhKcVV0UGR1NUNNOWRicUh2Tmo0OGJPUmw3UTdMeVR0V3A2UGo3NHR1ZFJmbGxmR1AyMys2TlhwTjZzaDFDbEdOc09WYjIvWWlOTU41VGxZM1lMcDBKeHFtV1BueFJ1cWNrWWtsOG9oclExVEN5WVl3WlZ5SWVFNDk5WEtIbk5NTk9RaXRLM1NCVjVSVHc4ZDJKN1FEUFBraG9xRlhqcnN3R0ozYkZaQzdUSFZmMmdXMjZVMUp4a2x6RFRaNjl4UzhqSHgzZjJSekJSbjhNNHRPZmlwTEJMUHNNYkpYRUhhUDhzMFphYVpGRkN3Ym40L3NwUzlBalZWQVk3V3dnd3g2NVBsV2p6MGg2Ykp6bTkxbkE1MjdOQzJiZmpoSXQrZXlOV0tDdTJQRG5kaGd2cERjM3hQdVhNT1lmZGk5U1JUckV5SUFjMFRMZUdBSG9Fdjk0amRaZnNMTENqY3hnZ0RBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.7","2":"4.4","3":"1.5","4":"0.4","5":"setosa","_rn_":"16"},{"1":"5.2","2":"4.1","3":"1.5","4":"0.1","5":"setosa","_rn_":"33"},{"1":"5.5","2":"4.2","3":"1.4","4":"0.2","5":"setosa","_rn_":"34"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>El resultado anterior son los datos de las especies que se llama <strong><em>setosa</em></strong> con una <strong><em>anchura de pétalos</em></strong> mayor que cuatro. El resultado sigue siendo un data frame. Con eso se puede hacer consultas con filtros más elaborados, por ejemplo:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJtMVJTMDdETUJDZGZKb3FScFFpYnNDK2tRaGlYd2tPZ09pQ2JvM2pVZ3ZIamh3M2NCVTRFMXlwTUU3c1FpTXNSWjU1ZnZQbXplVGhibjFOMWdRQUVraXlHSklKaHBEZDNsK1ZOeVZBR21NV1FRcTV1OStRZFlHQkEyZnVYcDYvdS9PeG5IKzY4NFh2cC80OUdyNGpnVXp5anNzV28zbmYwS010dDdxbFBpTWRONjFnV21yamtid1Q1bGtvd2VoSWJzSWtiWVBhb2NlR01vdTFBUHN4WGRHYUIzcnN3Wk1WYjZnc0hrVmx0eDZhcmhyT2hHTWVsZWRHdnhaQklrenBwQzRIWXZJOWNrSXFhbW14TVZqeWo1dXBicXpRQ3NWaXQ5SnNvQndKUkdZRW5PMlVNMUF0MkhhblhoYWxhL0s3NnQ1VTVJMzlpVjNiTkpqTFFudW02NW9yRzdiR0ZhNlloMDFKK3NTbFQyWTRkejkyMFJoeEtDQ0l0b1hWbGdZZXdYOFdrR0dXL1E5WXZWQ0VYUUlBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Width"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"4.4","2":"setosa","_rn_":"16"},{"1":"4.2","2":"setosa","_rn_":"34"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRhdGEgRnJhbWUiDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQotLS0NCiMgRGF0YSBGcmFtZXMNClVuICoqRGF0YSBGcmFtZSoqIGVzIHVuYSB0YWJsYSBkZSBkb2JsZSBlbnRyYWRhLCBmb3JtYWRhIHBvciB2YXJpYWJsZXMgZW4gbGFzIGNvbHVtbmFzIHkgb2JzZXJ2YWNpb25lcyBkZSBlc2FzIHZhcmlhYmxlcyBlbiBsYXMgZmlsYXMsIGRlIG1hbmVyYSBxdWUgY2FkYSBmaWxhIGNvbnRpZW5lIGxvcyB2YWxvcmVzIGRlIGxhcyB2YXJpYWJsZXMgcGFyYSB1biBtaXNtbyBjYXNvIG8gdW4gbWlzbW8gaW5kaXZpZHVvLg0KDQoqICoqRGF0YSgpKio6IHBhcmEgYWJyaXIgdW5hIHZlbnRhbmEgY29uIGxhIGxpc3RhIGRlIGxvcyBvYmpldG9zIGRlIGRhdG9zIGEgbG9zIHF1ZSB0ZW5lbW9zIGFjY2VzbyBlbiBsYSBzZXNpw7NuIGFjdHVhbCBkZSBgUmAobG9zIHF1ZSBsbGV2YSBsYSBpbnN0YWxhY2nDs24gYsOhc2ljYSBkZSBgUmAgeSBsb3MgcXVlIGFwb3J0YW4gbG9zIHBhcXVldGVzIHF1ZSB0ZW5nYW1vcyBjYXJnYWRvcykuDQoNCiAgKiBTaSBlbnRyYW1vcyAqKmRhdGEocGFja2FnZSA9IC5wYWNrYWdlcyhhbGwuYXZhaWxhYmxlID0gVFJVRSkpKiogb2J0ZW5kcmVtb3MgbGEgbGlzdGEgZGUgdG9kb3MgbG9zIG9iamV0b3MgZGUgZGF0b3MgYSBsb3MgcXVlIHRlbmVtb3MgYWNjZXNvLCBpbmNsdXllbmRvIGxvcyBkZSBsb3MgcGFxdWV0ZXMgcXVlIHRlbmdhbW9zIGluc3RhbGFkb3MsIHBlcm8gcXVlIG5vIGVzdMOpbiBjYXJnYWRvcyBlbiBsYSBzZXNpw7NuIGFjdHVhbC4NCiAgDQojIyBPYnRpZW5kbyBpbmZvcm1hY2nDs24gZGVsIGRhdGEgZnJhbWUNCiogKipoZWFkKERhdGFGcmFtZSwgbikqKjogcGFyYSBtb3N0cmFyIGxhcyBfbl8gcHJpbWVyYXMgZmlsYXMgZGVsIGRhdGEgZnJhbWUuIFBvciBkZWZlY3RvIHNlIG11ZXN0cmFuIGxhcyA2IHByaW1lcmFzIGZpbGFzLg0KDQoqICoqdGFpbChEYXRhRnJhbWUsIG4pKio6IHBhcmEgbW9zdHJhciBsYXMgX25fIMO6bHRpbWFzIGZpbGFzIGRlbCBkYXRhIGZyYW1lLiBQb3IgZGVmZWN0byBzZSBtdWVzdHJhbiBsYXMgNiDDumx0aW1hcyBmaWxhcy4NCg0KKiAqKnN0cihEYXRhRnJhbWUpKio6IHBhcmEgY29ub2NlciBsYSBlc3RydWN0dXJhIGdsb2JhbCBkZSB1biBkYXRhIGZyYW1lLg0KDQoqICoqbmFtZXMoRGF0YUZyYW1lKSoqOiBwYXJhIHByb2R1Y2lyIHVuIHZlY3RvciBjb24gbG9zIG5vbWJyZXMgZGUgbGFzIGNvbHVtbmFzLg0KDQoqICoqcm93bmFtZXMoRGF0YUZyYW1lKSoqOiBwYXJhIHByb2R1Y2lyIHVuIHZlY3RvciBjb24gbG9zIGlkZW50aWZpY2Fkb3JlcyBkZSBsYXMgZmlsYXMuDQoNCiAgKiBgUmBlbnRpZW5kZSBzaWVtcHJlIHF1ZSBlc3RvcyBpZGVudGlmaWNhZG9yZXMgc29uIHBhbGFicmFzLCBhdW5xdWUgc2VhbiBuw7ptZXJvcywgZGUgYWjDrSBxdWUgbG9zIGltcHJpbWEgZW50cmUgY29taWxsYXMuDQoNCiogKipjb2xuYW1lcyhEYXRhRnJhbWUpKio6IHBhcmEgcHJvZHVjaXIgdW4gdmVjdG9yIGNvbiBsb3MgaWRlbnRpZmljYWRvcmVzIGRlIGxhcyBjb2x1bW5hcy4NCg0KKiAqKmRpbW5hbWVzKERhdGFGcmFtZSkqKjogcGFyYSBwcm9kdWNpciB1bmEgbGlzdGEgZm9ybWFkYSBwb3IgZG9zIHZlY3RvcmVzKGVsIGRlIGxvcyBpZGVudGlmaWNhZG9yZXMgZGUgbGFzIGZpbGFzIHkgZWwgZGUgbG9zIG5vbWJyZXMgZGUgbGFzIGNvbHVtbmFzKS4NCg0KKiAqKm5yb3coRGF0YUZyYW1lKSoqOiBwYXJhIGNvbnN1bHRhciBlbCBuw7ptZXJvIGRlIGZpbGFzIGRlIHVuYSBkYXRhIGZyYW1lLg0KDQoqICoqbmNvbChEYXRhRnJhbWUpKio6IHBhcmEgY29uc3VsdGFyIGVsIG7Dum1lcm8gZGUgY29sdW1uYXMgZGUgdW5hIGRhdGEgZnJhbWUuDQoNCiogKipkaW0oRGF0YUZyYW1lKSoqOiBwYXJhIHByb2R1Y2lyIHVuIHZlY3RvciBjb24gZWwgbsO6bWVybyBkZSBmaWxhcyB5IGVsIGRlIGNvbHVtbmFzIGRlIHVuYSBkYXRhIGZyYW1lLg0KDQoqICoqRGF0YUZyYW1lLiRub21icmVfdmFyaWFibGUqKjogcGFyYSBvYnRlbmVyIHVuYSBjb2x1bW5hcyBjb25jcmV0YSBkZSB1biBkYXRhIGZyYW1lDQoNCiAgKiBFbCByZXN1bHRhZG8gc2Vyw6EgdW4gdmVjdG9yIG8gdW4gZmFjdG9yLCBzZWfDum4gY8OzbW8gZXN0w6kgZGVmaW5pZGEgbGEgY29sdW1uYSBkZW50cm8gZGVsIGRhdGEgZnJhbWUuDQogIA0KICAqIExhcyB2YXJpYWJsZXMgZGUgdW4gZGF0YSBmcmFtZSBzb24gaW50ZXJuYXMsIG5vIGVzdMOhbiBkZWZpbmlkYXMgZW4gZWwgZW50b3JubyBnbG9iYWwgZGUgdHJhYmFqbyBkZSBgUmAuDQogIA0KKiAqKkRhdGFGcmFtZVtuLCBtXSoqOiBwYXJhIGV4dHJhZXIgInRyb3pvcyIgZGVsIGRhdGEgZnJhbWUgcG9yIGZpbGFzIHkgY29sdW1uYXMoZnVuY2lvbmEgZXhhY3RhbWVudGUgaWd1YWwgcXVlIGVuIG1hdHJpY2VzKSBkb25kZSBfbl8geSBfbV8gcHVlZGVuIGRlZmluaXJzZSBjb21vOg0KDQogICogaW50ZXJ2YWxvcw0KICANCiAgKiBjb25kaWNpb25lcw0KICANCiAgKiBuw7ptZXJvcyBuYXR1cmFsZXMNCiAgDQogICogbm8gcG9uZXIgbmFkYQ0KDQogICogU2kgc8OzbG8gcXVlcmVtb3MgZGVmaW5pciBsYSBzdWJ0YWJsYSBxdcOpZGFuZG9ub3MgY29uIGFsZ3VuYXMgdmFyaWFibGVzLCBiYXN0YSBhcGxpY2FyIGVsIG5vbWJyZSBkZWwgZGF0YSBmcmFtZSBhbCB2ZWN0b3IgZGUgdmFyaWFibGVzLg0KDQogICogRXN0YXMgY29uc3RydWNjaW9uZXMgc2UgcHVlZGVuIHVzYXIgdGFtYsOtZW4gcGFyYSByZW9yZGVuYXIgbGFzIGZpbGFzIG8gY29sdW5tYXMuDQoNCg0KIyBEYXRhIEZyYW1lIGRlIElyaXMNCg0KQcOxYWRpciB1bmEgYmFzZSBkZSBkYXRvcyBkZSBpcmlzDQpgYGB7ciBjb21tZW50PU5BfQ0KZGYgPC0gaXJpcyAjQ2FyZ2FuZG8gbG9zIGRhdG9zIGRlIElyaXMgYSBsYSB2YXJpYWJsZSBkZg0KaGVhZChkZiwgNSkjTGVlciBkZiB5IHPDs2xvIG11ZXN0cmEgbG9zIDUgcHJpbWVyb3MgZGF0b3MNCnRhaWwoZGYsIDUpI01vc3RyYXIgbG9zIDUgw7psdGltb3MgZGF0b3MgZGUgZGYNCmBgYA0KDQpQYXJhIGNvbnN1bHRhciBsYSBpbmZvcm1hY2nDs24gYsOhc2ljYSBkZWwgRGF0YSBGcmFtZSAqKmRmKiosIGVzIGRlY2lyLCBzw7NsbyBtdWVzdHJhIGVsIG5vbWJyZSBkZSBsYXMgY29sdW1uYXMgZGUgbGEgdGFibGEuDQpgYGB7ciBjb21tZW50PU5BfQ0KbmFtZXMoZGYpI1BhcmEgdmVyIGxvcyBub21icmVzIGRlIGxhcyB2YXJpYWJsZXMgbyBjb2x1bW5hcyBkZWwgRGF0YSBGcmFtZQ0KYGBgDQpQYXJhIHZlciBzdSBlc3RydWN0dXJhOg0KYGBge3IgY29tbWVudD1OQX0NCnN0cihkZikjUGFyYSB2ZXIgbGEgZXN0cnVjdHVyYSBkZWwgRGF0YSBGcmFtZQ0KYGBgDQoNCkNvbW8gc2UgcHVlZGUgb2JzZXJ2YXIsIGxhIGVzdHJ1Y3R1cmEgdGllbmUgMyB2ZWN0b3JlcyBudW3DqXJpY29zIHkgdW4gZmFjdG9yIGRlIDMgbml2ZWxlcy4=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRhdGEgRnJhbWUiDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQotLS0NCiMgRGF0YSBGcmFtZXMNClVuICoqRGF0YSBGcmFtZSoqIGVzIHVuYSB0YWJsYSBkZSBkb2JsZSBlbnRyYWRhLCBmb3JtYWRhIHBvciB2YXJpYWJsZXMgZW4gbGFzIGNvbHVtbmFzIHkgb2JzZXJ2YWNpb25lcyBkZSBlc2FzIHZhcmlhYmxlcyBlbiBsYXMgZmlsYXMsIGRlIG1hbmVyYSBxdWUgY2FkYSBmaWxhIGNvbnRpZW5lIGxvcyB2YWxvcmVzIGRlIGxhcyB2YXJpYWJsZXMgcGFyYSB1biBtaXNtbyBjYXNvIG8gdW4gbWlzbW8gaW5kaXZpZHVvLg0KDQoqICoqRGF0YSgpKio6IHBhcmEgYWJyaXIgdW5hIHZlbnRhbmEgY29uIGxhIGxpc3RhIGRlIGxvcyBvYmpldG9zIGRlIGRhdG9zIGEgbG9zIHF1ZSB0ZW5lbW9zIGFjY2VzbyBlbiBsYSBzZXNpw7NuIGFjdHVhbCBkZSBgUmAobG9zIHF1ZSBsbGV2YSBsYSBpbnN0YWxhY2nDs24gYsOhc2ljYSBkZSBgUmAgeSBsb3MgcXVlIGFwb3J0YW4gbG9zIHBhcXVldGVzIHF1ZSB0ZW5nYW1vcyBjYXJnYWRvcykuDQoNCiAgKiBTaSBlbnRyYW1vcyAqKmRhdGEocGFja2FnZSA9IC5wYWNrYWdlcyhhbGwuYXZhaWxhYmxlID0gVFJVRSkpKiogb2J0ZW5kcmVtb3MgbGEgbGlzdGEgZGUgdG9kb3MgbG9zIG9iamV0b3MgZGUgZGF0b3MgYSBsb3MgcXVlIHRlbmVtb3MgYWNjZXNvLCBpbmNsdXllbmRvIGxvcyBkZSBsb3MgcGFxdWV0ZXMgcXVlIHRlbmdhbW9zIGluc3RhbGFkb3MsIHBlcm8gcXVlIG5vIGVzdMOpbiBjYXJnYWRvcyBlbiBsYSBzZXNpw7NuIGFjdHVhbC4NCiAgDQojIyBPYnRpZW5kbyBpbmZvcm1hY2nDs24gZGVsIGRhdGEgZnJhbWUNCiogKipoZWFkKERhdGFGcmFtZSwgbikqKjogcGFyYSBtb3N0cmFyIGxhcyBfbl8gcHJpbWVyYXMgZmlsYXMgZGVsIGRhdGEgZnJhbWUuIFBvciBkZWZlY3RvIHNlIG11ZXN0cmFuIGxhcyA2IHByaW1lcmFzIGZpbGFzLg0KDQoqICoqdGFpbChEYXRhRnJhbWUsIG4pKio6IHBhcmEgbW9zdHJhciBsYXMgX25fIMO6bHRpbWFzIGZpbGFzIGRlbCBkYXRhIGZyYW1lLiBQb3IgZGVmZWN0byBzZSBtdWVzdHJhbiBsYXMgNiDDumx0aW1hcyBmaWxhcy4NCg0KKiAqKnN0cihEYXRhRnJhbWUpKio6IHBhcmEgY29ub2NlciBsYSBlc3RydWN0dXJhIGdsb2JhbCBkZSB1biBkYXRhIGZyYW1lLg0KDQoqICoqbmFtZXMoRGF0YUZyYW1lKSoqOiBwYXJhIHByb2R1Y2lyIHVuIHZlY3RvciBjb24gbG9zIG5vbWJyZXMgZGUgbGFzIGNvbHVtbmFzLg0KDQoNCg0KDQojIyBEYXRhIEZyYW1lIGRlIElyaXMNCg0KQcOxYWRpciB1bmEgYmFzZSBkZSBkYXRvcyBkZSBpcmlzDQpgYGB7ciBjb21tZW50PU5BfQ0KZGYgPC0gaXJpcyAjQ2FyZ2FuZG8gbG9zIGRhdG9zIGRlIElyaXMgYSBsYSB2YXJpYWJsZSBkZg0KaGVhZChkZiwgNSkjTGVlciBkZiB5IHPDs2xvIG11ZXN0cmEgbG9zIDUgcHJpbWVyb3MgZGF0b3MNCnRhaWwoZGYsIDUpI01vc3RyYXIgbG9zIDUgw7psdGltb3MgZGF0b3MgZGUgZGYNCmBgYA0KDQpQYXJhIGNvbnN1bHRhciBsYSBpbmZvcm1hY2nDs24gYsOhc2ljYSBkZWwgRGF0YSBGcmFtZSAqKmRmKiosIGVzIGRlY2lyLCBzw7NsbyBtdWVzdHJhIGVsIG5vbWJyZSBkZSBsYXMgY29sdW1uYXMgZGUgbGEgdGFibGEuDQpgYGB7ciBjb21tZW50PU5BfQ0KbmFtZXMoZGYpI1BhcmEgdmVyIGxvcyBub21icmVzIGRlIGxhcyB2YXJpYWJsZXMgbyBjb2x1bW5hcyBkZWwgRGF0YSBGcmFtZQ0KYGBgDQpQYXJhIHZlciBzdSBlc3RydWN0dXJhOg0KYGBge3IgY29tbWVudD1OQX0NCnN0cihkZikjUGFyYSB2ZXIgbGEgZXN0cnVjdHVyYSBkZWwgRGF0YSBGcmFtZQ0KYGBgDQoNCkNvbW8gc2UgcHVlZGUgb2JzZXJ2YXIsIGxhIGVzdHJ1Y3R1cmEgdGllbmUgMyB2ZWN0b3JlcyBudW3DqXJpY29zIHkgdW4gZmFjdG9yIGRlIDMgbml2ZWxlcy4NCg0KDQojIEVzdHJ1Y3R1cmEgeSBmaWx0cmFkbyBkZSBkYXRhIGZyYW1lDQoNCiogKipyb3duYW1lcyhEYXRhRnJhbWUpKio6IHBhcmEgcHJvZHVjaXIgdW4gdmVjdG9yIGNvbiBsb3MgaWRlbnRpZmljYWRvcmVzIGRlIGxhcyBmaWxhcy4NCg0KICAqIGBSYGVudGllbmRlIHNpZW1wcmUgcXVlIGVzdG9zIGlkZW50aWZpY2Fkb3JlcyBzb24gcGFsYWJyYXMsIGF1bnF1ZSBzZWFuIG7Dum1lcm9zLCBkZSBhaMOtIHF1ZSBsb3MgaW1wcmltYSBlbnRyZSBjb21pbGxhcy4NCg0KKiAqKmNvbG5hbWVzKERhdGFGcmFtZSkqKjogcGFyYSBwcm9kdWNpciB1biB2ZWN0b3IgY29uIGxvcyBpZGVudGlmaWNhZG9yZXMgZGUgbGFzIGNvbHVtbmFzLg0KDQoqICoqZGltbmFtZXMoRGF0YUZyYW1lKSoqOiBwYXJhIHByb2R1Y2lyIHVuYSBsaXN0YSBmb3JtYWRhIHBvciBkb3MgdmVjdG9yZXMoZWwgZGUgbG9zIGlkZW50aWZpY2Fkb3JlcyBkZSBsYXMgZmlsYXMgeSBlbCBkZSBsb3Mgbm9tYnJlcyBkZSBsYXMgY29sdW1uYXMpLg0KDQoqICoqbnJvdyhEYXRhRnJhbWUpKio6IHBhcmEgY29uc3VsdGFyIGVsIG7Dum1lcm8gZGUgZmlsYXMgZGUgdW5hIGRhdGEgZnJhbWUuDQoNCiogKipuY29sKERhdGFGcmFtZSkqKjogcGFyYSBjb25zdWx0YXIgZWwgbsO6bWVybyBkZSBjb2x1bW5hcyBkZSB1bmEgZGF0YSBmcmFtZS4NCg0KKiAqKmRpbShEYXRhRnJhbWUpKio6IHBhcmEgcHJvZHVjaXIgdW4gdmVjdG9yIGNvbiBlbCBuw7ptZXJvIGRlIGZpbGFzIHkgZWwgZGUgY29sdW1uYXMgZGUgdW5hIGRhdGEgZnJhbWUuDQoNCiogKipEYXRhRnJhbWUuJG5vbWJyZV92YXJpYWJsZSoqOiBwYXJhIG9idGVuZXIgdW5hIGNvbHVtbmFzIGNvbmNyZXRhIGRlIHVuIGRhdGEgZnJhbWUNCg0KICAqIEVsIHJlc3VsdGFkbyBzZXLDoSB1biB2ZWN0b3IgbyB1biBmYWN0b3IsIHNlZ8O6biBjw7NtbyBlc3TDqSBkZWZpbmlkYSBsYSBjb2x1bW5hIGRlbnRybyBkZWwgZGF0YSBmcmFtZS4NCiAgDQogICogTGFzIHZhcmlhYmxlcyBkZSB1biBkYXRhIGZyYW1lIHNvbiBpbnRlcm5hcywgbm8gZXN0w6FuIGRlZmluaWRhcyBlbiBlbCBlbnRvcm5vIGdsb2JhbCBkZSB0cmFiYWpvIGRlIGBSYC4NCiAgDQpFamVtcGxvczoNCmBgYHtyIGNvbW1lbnQ9TkF9DQojTm9tZXMgZGUgbGEgZXN0cnVjdHVyYSBkZSBsYXMgZmlsYXMNCnJvd25hbWVzKGRmKQ0KYGBgDQpMb3MgZGF0b3MgcXVlIGFwYXJlY2UgZWwgbm9tYnJlIGRlIGxvcyBpZGVudGlmaWNhZG9yZXMgZGUgbGFzIGZpbGFzLiBFc29zIGlkZW50aWZpY2Fkb3JlcyBzb24gbG8gcXVlIGFwYXJlY2UgYSBpenF1aWVyZGEgZGVsIGRhdGEgZnJhbWUNCmBgYHtyIGNvbW1lbnQ9TkF9DQpoZWFkKGRmLCAxMCkNCg0KYGBgDQoNCmBgYHtyIGNvbW1lbnQ9TkF9DQojTm9tYnJlcyBkZSBsYSBlc3RydWN0dXJhIGRlIGxhcyBjb2x1bW5hcw0KY29sbmFtZXMoZGYpDQpgYGANCkxvcyBkYXRvcyBxdWUgYXBhcmVjZSBlbCBub21icmUgZGUgbG9zIGlkZW50aWZpY2Fkb3JlcyBkZSBsYXMgY29sdW1uYXMuIEVzb3MgaWRlbnRpZmljYWRvcmVzIHNvbiBsbyBxdWUgYXBhcmVjZSBhIGxhIHBhcnRlIGRlIGFycmliYSBkZWwgZGF0YSBmcmFtZQ0KDQpQYXJhIHZlciBxdWUgbG9zIGRhdG9zIGRlIG5vbWJyZXMgZGUgZmlsYSBvIGNvbHVtbmEgc2llbXByZSBkZXZ1ZWx2ZSB1biB2ZWN0b3IsIGJhc3RhIHBlZGlyIGxhIGluZm9ybWFjacOzbiBjb21wbGV0YSBjb21vIGVuIGVsIGVqZW1wbG8gYSBjb250aW51YWNpw7NuOg0KYGBge3IgY29tbWVudD1OQX0NCmRpbW5hbWVzKGRmKQ0KYGBgDQoNCkNvbW8gc2UgYXByZWNpYSwgZXMgdW4gdmVjdG9yIGJpZGltZW5zaW9uYWwgKG1hdHJpeiksIGRvbmRlIHVuYSBkaW1lbnNpw7NuIHNvbiBsb3MgaWRlbnRpZmljYWRvcmVzIGRlIGxhcyBmaWxhcyB5IGxhIG90cmEgZGltZW5zacOzbiBzb24gbG9zIGlkZW50aWZpY2Fkb3JlcyBkZSBsYXMgY29sdW1uYXMuDQoNClBhcmEgc2FiZXIgZWwgbsO6bWVybyBkZSBmaWxhczoNCmBgYHtyIGNvbW1lbnQ9TkF9DQpucm93KGRmKQ0KYGBgDQpQYXJhIHNhYmVyIGVsIG7Dum1lcm8gZGUgY29sdW1uYXM6DQpgYGB7ciBjb21tZW50PU5BfQ0KbnJvdyhkZikNCmBgYA0KDQpQYXJhIHNhYmVyIGVsIG7Dum1lcm8gZGUgZmlsYXMgeSBjb2x1bW5hcyBlbiB1bmEgw7puaWNhIGNvbnN1bGF0YToNCmBgYHtyIGNvbW1lbnQ9TkF9DQpkaW0oZGYpDQpgYGANCg0KQ29tbyBzZSBvYnNlcnZhLCBkZXZ1ZWx2ZSB1biB2ZWN0b3IgY29uIGRvcyBwb3NpY2lvbmVzLCBkb25kZSBsYSBwb3NpY2nDs24gY2VybyBpbmRpY2EgbGEgbG9uZ2l0dWQgZGUgbGFzIGZpbGFzIHkgZW4gbGEgcG9zaWNpw7NuIHVubyBpbmRpY2EgbGEgbG9uZ2l0dWQgZGUgY29sdW1uYXMuDQoNClBhcmEgcG9kZXIgYWNjZWRlciBhIHVuYSBjb21wb25lbnRlIGVuIGNvbmNyZXRvIGRlbCBkYXRhIGZyYW1lLiBFbCByZXN1bHRhZG8gcHVlZGUgc2VyIHVuIHZlY3RvciBvIHVuIGZhY3RvciwgZXNvIHZhIGRlcGVuZGVyIGRlbCB0aXBvIGRlIGRhdG8gcXVlIGVzdMOpIGFsbWFjZW5hZG8uDQoNCmBgYHtyIGNvbW1lbnQ9TkF9DQojQWNjZWRlciB0b2RvcyBsb3MgZGF0b3MgZGUgdmFyaWFibGUgZGUgbm9tYnJlIFNlcGFsDQpkZiRTZXBhbC5MZW5ndGgNCmBgYA0KDQpTZSBwdWVkZSBhY2NlZGVyIHNvbGFtZW50ZSBhIHVuYSBjYW50aWRhZCBlc3BlY2lmaWNhZGENCmBgYHtyfQ0KZGYkU2VwYWwuTGVuZ3RoWzE6MTBdDQpgYGANCg0KIyMgU3ViLWRhdGEgZnJhbWVzDQoNCiogKipEYXRhRnJhbWVbbiwgbV0qKjogcGFyYSBleHRyYWVyICJ0cm96b3MiIGRlbCBkYXRhIGZyYW1lIHBvciBmaWxhcyB5IGNvbHVtbmFzKGZ1bmNpb25hIGV4YWN0YW1lbnRlIGlndWFsIHF1ZSBlbiBtYXRyaWNlcykgZG9uZGUgX25fIHkgX21fIHB1ZWRlbiBkZWZpbmlyc2UgY29tbzoNCg0KICAqIGludGVydmFsb3MNCiAgDQogICogY29uZGljaW9uZXMNCiAgDQogICogbsO6bWVyb3MgbmF0dXJhbGVzDQogIA0KICAqIG5vIHBvbmVyIG5hZGENCg0KICAqIFNpIHPDs2xvIHF1ZXJlbW9zIGRlZmluaXIgbGEgc3VidGFibGEgcXXDqWRhbmRvbm9zIGNvbiBhbGd1bmFzIHZhcmlhYmxlcywgYmFzdGEgYXBsaWNhciBlbCBub21icmUgZGVsIGRhdGEgZnJhbWUgYWwgdmVjdG9yIGRlIHZhcmlhYmxlcy4NCg0KICAqIEVzdGFzIGNvbnN0cnVjY2lvbmVzIHNlIHB1ZWRlbiB1c2FyIHRhbWLDrWVuIHBhcmEgcmVvcmRlbmFyIGxhcyBmaWxhcyBvIGNvbHVubWFzLg0KICANCkRlIGVzYSBmb3JtYSBzZSBwdWVkZSBhY2NlZGVyIGEgbG9zIGRhdG9zIGRlbCBkYXRhIGZyYW1lIGRlIGZvcm1hIHBlcnNvbmFsaXphZGEuDQoNCkVqZW1wbG9zOg0KDQpgYGB7ciBjb21tZW50PU5BfQ0KI0RhdG9zIGRlIGxhcyAxMCBwcmltZXJhcyBmaWxhcw0KZGZbMToxMCwgXQ0KYGBgDQoNCmBgYHtyIGNvbW1lbnQ9TkF9DQojRGF0b3MgZGUgbGFzIDMgcHJpbWVyYXMgY29sdW1uYXMNCmRmWywgMTozXQ0KYGBgDQpgYGB7ciBjb21tZW50PU5BfQ0KI0RhdG9zIGRlIGxhcyAxMCBwcmltZXJhcyBmaWxhcyB5IGNvbHVtbmFzIGRlIDIgYSA0DQpkZlsxOjEwLCAyOjRdDQpgYGANCmBgYHtyIGNvbW1lbnQ9TkF9DQojRGF0b3MgY3VtcGxpZW5kbyB1bmEgZXhwcmVzacOzbiBib29sZWFuYQ0KZGZbZGYkU3BlY2llcyA9PSAic2V0b3NhIiAmIGRmJFNlcGFsLldpZHRoID4gNCwgXQ0KYGBgDQpFbCByZXN1bHRhZG8gYW50ZXJpb3Igc29uIGxvcyBkYXRvcyBkZSBsYXMgZXNwZWNpZXMgcXVlIHNlIGxsYW1hICoqX3NldG9zYV8qKiBjb24gdW5hICoqX2FuY2h1cmEgZGUgcMOpdGFsb3NfKiogbWF5b3IgcXVlIGN1YXRyby4NCkVsIHJlc3VsdGFkbyBzaWd1ZSBzaWVuZG8gdW4gZGF0YSBmcmFtZS4gQ29uIGVzbyBzZSBwdWVkZSBoYWNlciBjb25zdWx0YXMgY29uIGZpbHRyb3MgbcOhcyBlbGFib3JhZG9zLCBwb3IgZWplbXBsbzoNCg0KYGBge3IgY29tbWVudD1OQX0NCiNEYXRvcyBjdW1wbGllbmRvIHVuYSBleHByZXNpw7NuIGJvb2xlYW5hIGFkZW3DoXMgZGUgdXVuIGZpbHRyYWRvIGFsIGZpbmFsDQpkZltkZiRTcGVjaWVzID09ICJzZXRvc2EiICYgZGYkU2VwYWwuV2lkdGggPiA0LCBdW2MoMSwzKSwgYygyLDUpXQ0KYGBgDQoNCg==</div>
 
 
 

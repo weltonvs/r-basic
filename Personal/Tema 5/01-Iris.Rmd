@@ -20,6 +20,32 @@ Un **Data Frame** es una tabla de doble entrada, formada por variables en las co
 
 * **names(DataFrame)**: para producir un vector con los nombres de las columnas.
 
+
+
+
+## Data Frame de Iris
+
+Añadir una base de datos de iris
+```{r comment=NA}
+df <- iris #Cargando los datos de Iris a la variable df
+head(df, 5)#Leer df y sólo muestra los 5 primeros datos
+tail(df, 5)#Mostrar los 5 últimos datos de df
+```
+
+Para consultar la información básica del Data Frame **df**, es decir, sólo muestra el nombre de las columnas de la tabla.
+```{r comment=NA}
+names(df)#Para ver los nombres de las variables o columnas del Data Frame
+```
+Para ver su estructura:
+```{r comment=NA}
+str(df)#Para ver la estructura del Data Frame
+```
+
+Como se puede observar, la estructura tiene 3 vectores numéricos y un factor de 3 niveles.
+
+
+# Estructura y filtrado de data frame
+
 * **rownames(DataFrame)**: para producir un vector con los identificadores de las filas.
 
   * `R`entiende siempre que estos identificadores son palabras, aunque sean números, de ahí que los imprima entre comillas.
@@ -40,6 +66,60 @@ Un **Data Frame** es una tabla de doble entrada, formada por variables en las co
   
   * Las variables de un data frame son internas, no están definidas en el entorno global de trabajo de `R`.
   
+Ejemplos:
+```{r comment=NA}
+#Nomes de la estructura de las filas
+rownames(df)
+```
+Los datos que aparece el nombre de los identificadores de las filas. Esos identificadores son lo que aparece a izquierda del data frame
+```{r comment=NA}
+head(df, 10)
+
+```
+
+```{r comment=NA}
+#Nombres de la estructura de las columnas
+colnames(df)
+```
+Los datos que aparece el nombre de los identificadores de las columnas. Esos identificadores son lo que aparece a la parte de arriba del data frame
+
+Para ver que los datos de nombres de fila o columna siempre devuelve un vector, basta pedir la información completa como en el ejemplo a continuación:
+```{r comment=NA}
+dimnames(df)
+```
+
+Como se aprecia, es un vector bidimensional (matriz), donde una dimensión son los identificadores de las filas y la otra dimensión son los identificadores de las columnas.
+
+Para saber el número de filas:
+```{r comment=NA}
+nrow(df)
+```
+Para saber el número de columnas:
+```{r comment=NA}
+nrow(df)
+```
+
+Para saber el número de filas y columnas en una única consulata:
+```{r comment=NA}
+dim(df)
+```
+
+Como se observa, devuelve un vector con dos posiciones, donde la posición cero indica la longitud de las filas y en la posición uno indica la longitud de columnas.
+
+Para poder acceder a una componente en concreto del data frame. El resultado puede ser un vector o un factor, eso va depender del tipo de dato que esté almacenado.
+
+```{r comment=NA}
+#Acceder todos los datos de variable de nombre Sepal
+df$Sepal.Length
+```
+
+Se puede acceder solamente a una cantidad especificada
+```{r}
+df$Sepal.Length[1:10]
+```
+
+## Sub-data frames
+
 * **DataFrame[n, m]**: para extraer "trozos" del data frame por filas y columnas(funciona exactamente igual que en matrices) donde _n_ y _m_ pueden definirse como:
 
   * intervalos
@@ -53,24 +133,33 @@ Un **Data Frame** es una tabla de doble entrada, formada por variables en las co
   * Si sólo queremos definir la subtabla quédandonos con algunas variables, basta aplicar el nombre del data frame al vector de variables.
 
   * Estas construcciones se pueden usar tambíen para reordenar las filas o colunmas.
+  
+De esa forma se puede acceder a los datos del data frame de forma personalizada.
 
+Ejemplos:
 
-# Data Frame de Iris
-
-Añadir una base de datos de iris
 ```{r comment=NA}
-df <- iris #Cargando los datos de Iris a la variable df
-head(df, 5)#Leer df y sólo muestra los 5 primeros datos
-tail(df, 5)#Mostrar los 5 últimos datos de df
+#Datos de las 10 primeras filas
+df[1:10, ]
 ```
 
-Para consultar la información básica del Data Frame **df**, es decir, sólo muestra el nombre de las columnas de la tabla.
 ```{r comment=NA}
-names(df)#Para ver los nombres de las variables o columnas del Data Frame
+#Datos de las 3 primeras columnas
+df[, 1:3]
 ```
-Para ver su estructura:
 ```{r comment=NA}
-str(df)#Para ver la estructura del Data Frame
+#Datos de las 10 primeras filas y columnas de 2 a 4
+df[1:10, 2:4]
+```
+```{r comment=NA}
+#Datos cumpliendo una expresión booleana
+df[df$Species == "setosa" & df$Sepal.Width > 4, ]
+```
+El resultado anterior son los datos de las especies que se llama **_setosa_** con una **_anchura de pétalos_** mayor que cuatro.
+El resultado sigue siendo un data frame. Con eso se puede hacer consultas con filtros más elaborados, por ejemplo:
+
+```{r comment=NA}
+#Datos cumpliendo una expresión booleana además de uun filtrado al final
+df[df$Species == "setosa" & df$Sepal.Width > 4, ][c(1,3), c(2,5)]
 ```
 
-Como se puede observar, la estructura tiene 3 vectores numéricos y un factor de 3 niveles.
