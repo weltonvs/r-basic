@@ -1,0 +1,59 @@
+---
+title: "Lectura de Datos desde un fichero"
+author: "Welton Vieira dos Santos"
+date: "28/2/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Leyendo tablas de datos
+
+* **read.table()**: para definir un data frame a partir de una tabla de datos contenida en un fichero
+
+  * Este fichero puede estar guardado en nuestro ordenador o bien podemos conocer su URL. Sea cual sea el caso, se aplica la función al nombre del fichero o la dirección entre comillas
+  
+## Carga de ficheros local
+
+Como ejemplo, vamos a cargar un fichero de datos llamado _bulls.dat_ que se encuentra en la carpeta _datos_ de ese ambiente de trabajo.
+
+```{r comment=NA}
+#Cargar la tabla del fichero bulls.dat a la variable datos
+datos <- read.table("../../data/bulls.dat")
+
+#Para visualizar el contenido de la variable datos
+head(datos, 10)#Las 10 primeras filas
+
+tail(datos, 10)#Las 10 últimas filas
+
+
+```
+## Parámetros de la función read.table()
+
+* **header = TRUE**: para indicar si la tabla que importamos tiene una primera fila con los nombres de las columnas. El valor por defecto es **FALSE**
+
+* **col.names = c(...)**: para especificar el nombre de las columnas. No olvidar que cada nombre debe ir entre comillas.
+
+* **sep**: para especificar las separaciones entre columnas en el fichero (si no es un espacio en blanco). Si es así, hay que introducir el parámetro pertinente entre comillas. Para verificar los tipos de separación que proporciona `R` utilize la función **?read.tables**
+
+* **dec**: para especificar el signo que separa la parte entera de la decimal (si no es un punto. Si es así, hay que introducir el parámetro pertinente entre comillas)
+
+
+```{r comment=NA}
+df <- read.table("../../data/bulls.dat", 
+                 header = FALSE,
+                 col.names = c("breed", "sale_price", "shoulder", 
+                               "fat_free", "percent_ff", "frame_scale",
+                               "back_fat", "sale_height", "sale_weight"))
+names(df)
+```
+
+Para verificar que los datos están bien cargados, utilizar la función para ver la estructura del data frame
+```{r comment=NA}
+str(df)
+```
+
+
+
