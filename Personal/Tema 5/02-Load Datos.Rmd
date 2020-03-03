@@ -55,5 +55,154 @@ Para verificar que los datos están bien cargados, utilizar la función para ver
 str(df)
 ```
 
+* **stringsAsFactor**: para prohibir la transformación de las columnas de palabras en factores debemos usar **stringsAsFactors=FALSE**(ya que por defecto, `R` realiza dicha transformación)
 
+* Para importar un fichero de una página web segura(cuyo url empiece con https), no podemos entrar directamente la dirección en **read.table()**; una solución es instalar y cargar el paquete **_RCurl_** y entonces usar la instrucción **read.table(textConnection(getURL("url ")), ...).
+
+Ejemplos de Factores en un DF:
+```{r comment=NA}
+df3 <- read.table("https://maitra.public.iastate.edu/stat501/datasets/olive.dat")
+str(df3)
+```
+
+Como se puede observar, según la base de datos _olive.dat_ al cargar en `R` hay varias columnas de tipo factors. Si no quiere trabajar con factors, basta poner el argumento **stringsAsFactors=FALSE** para solucionar ese incoveniente.
+```{r}
+df3 <- read.table("https://maitra.public.iastate.edu/stat501/datasets/olive.dat", stringsAsFactors = FALSE)
+str(df3)
+```
+
+Se observa que las columnas ya no son factores. Tambien esa base de datos trae el nombre de las cabeceras. Entonces se puede decir que las importe correctamente.
+```{r}
+df3 <- read.table("https://maitra.public.iastate.edu/stat501/datasets/olive.dat", stringsAsFactors = FALSE, header = TRUE)
+str(df3)
+```
+Ahora perfecto.
+
+Hasta ahora hemos utilizado la función **read.table()**, que es muy básica y sólo carga tablas. Para cargar otros tipos de archivos con extensión _.csv_, _.xls_, _.xlsx_, _.mtb_ y _.spss_ hay otras funciones más específicas.
+
+## Leyendo diferentes tipos de fichero
+
+* **read.csv()**: para importar ficheros en formato CSV.
+
+* **read.xls()** o **read.xlsxx()**: para importar hojas de calculos tipo Excel u OpenOffice en formato XLS o XLSX, respectivamente. Se necesita el paquete **_xlsx_**.
+
+* **read.mtb()**: para importar tablas de datos Minitab.Se necesita el paquete **_foreign_**. 
+
+* **read.spss()**: para importar tablas de datos SPSS.Se necesita el paquete **_foreign_**.
+
+Los formatos _.mtb_ y _.spss_ son lenguajes de pago muy utilizados por programas estadísticos de pago muy utilizados anteriormente hasta que salio `R`.
+
+Es preferible utilizar para guardar las tablas de datos el formato _.csv_ porque se trata de un texto plano y no posee una estructura compleja como las otras anteriores comentadas y además evita muchísimos errores a la hora de cargar esos tipos de archivos.
+
+Para mas detalles mirar la ayuda de `R`:
+```{r comment=NA}
+help.search("read")
+```
+
+# Guardar un Data Frame (DF)
+
+Guardar en formato txt
+```{r}
+write.table(df3, file = "oliva.txt", dec = ".")
+```
+
+Guardar en formato csv
+```{r}
+write.csv(df3, file = "oliva.csv", sep = ",")
+```
+
+**Importante:** Lo más aconsejable es al cargar de un fichero bajado de internet, es bueno guardarlo en un formato .text o .csv y despues tratarlo para que se pueda trabajar sin problemas.
+```{r comment=NA}
+df4 <- read.table("oliva.txt", dec = ".", header = TRUE)
+head(df4)
+```
+
+
+# Construyendo data frames
+Se puede construir un data frame a partir de una vector de datos o varible.
+
+* **data.frame(vector_1, ..., vector_n)**: para construir un data frame a partir de vectores introducidos en el orden en el que queremos disponer las columnas de la tabla
+
+  * `R` considera del mismo tipo de datos todas las entradas de una columna de un data frame.
+  
+  * Las variables tomarán los nombres de los vectores. Estos nombres se pueden especificar en el argumento de **_data_frame_** entrando una construcción de la forma **nombre_variable=vector**
+  
+  * **rownames**: para especificar los identificadores de las filas.
+  
+  * Tambíen en esta función podemos hacer uso del parámetro **stringAsFactors** para evitar la transformación de las columnas de tipo palabra en factores.
+  
+* **fix(DataFrame)**: para crear / editar un data frame con el edidor de datos.
+
+* **names(DataFrame)**: para cambiar los nombres de las variables.
+
+* **rownames(DataFrame)**: para modificar los identificadores de las filas. Han de ser todos diferentes.
+
+* **dimnames(DataFrame) = list(vec_nom_fil, vec_nom_col)**: para modificar el nombre de las filas y de las columnas simultáneamente
+
+* **DataFrame[num_fila, ] = c(...)**: para añadir una fila a un data frame:
+
+  * Las filas que añadimos de esta manera son vectores, y por tanto sus entradas han de ser todas del mismo tipo.
+  
+  * Si no añadimos las filas inmediatamente siguientes a la última fila del data frame, los valores entre su última fila y las que añadimos quedarán no definidos y aparecerán como NA
+  
+  * Para evitar el problema anterior, vale más usar la función **_rbind()_** para concatenar el data frame con al nueva fila.
+
+Ejemplos:
+```{r comment=NA}
+#Vectores de notas de asignaturas
+Algebra <- c(1,2,0,5,4,6,7,5,5,8)
+Analysis <- c(3,3,2,7,9,5,6,8,5,6)
+Statistics <- c(4,5,4,8,8,9,6,7,9,10)
+
+#Contruir el data frame
+grades <- data.frame(Alg = Algebra, An = Analysis, Stat = Statistics)
+str(grades)
+```
+
+```{r comment=NA}
+gender <- c("H", "M", "M", "M", "H")
+age <- c(23, 45, 20, 30, 18)
+family <- c(2, 3, 4, 2, 5)
+
+#Construir el data frame
+df5 <- data.frame(genero = gender, edad = age, familia = family, stringsAsFactors = TRUE)
+df5
+str(df5)
+```
+
+Para asignar nombres en las filas:
+```{r comment=NA}
+row.names(df5) <- c("P1", "P2", "P3", "P4", "P5")
+df5
+```
+
+Para modificar el nombre de las lineas y columnas a la vez:
+```{r comment=NA}
+dimnames(df5) <- list(
+  c("Antonio", "Ricardo", "JuanGabriel", "Maria", "Margarita"),
+  c("Sexo", "Años", "MiembrosFamilia")
+)
+
+df5
+```
+
+Ejemplo del data frame grades creado anteriormente, vamos añadir una nueva columna de datos
+```{r comment=NA}
+Calculus <- c(5,4,6,2,1,0,7,8,9,6)
+grades2 <- cbind(grades, Calculus)
+head(grades2)
+```
+Se puede tambien acceder a las columnas directamente con el **$**:
+```{r comment=NA}
+#Convertir la columna Sexo en caracter
+df5$Sexo = as.character(df5$Sexo)
+df5
+```
+Se pasa de factor a caracter.
+
+Se puede tambien añadir una nueva columna con esa tecnica
+```{r comment=NA}
+df5$Ingresos = c(1000,12000,15000,12000,20000)
+df5
+```
 
