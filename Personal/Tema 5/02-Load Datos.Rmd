@@ -206,3 +206,69 @@ df5$Ingresos = c(1000,12000,15000,12000,20000)
 df5
 ```
 
+
+# Cambiando los tipos de datos
+
+Muy conocido como _casting_ en otros lenguajes. Que es nada más o nada menos que cambiar un tipo de datos a otro tipo de datos.
+
+* **as.character**: para transformar todos los datos de un objeto en palabras(strigs).
+
+* **as.integer**: para transformar todos los datos de un objeto a números enteros.
+
+* **as.numeric**: para transformar todos los datos de un objeto a números reales.
+
+# Más sobre sub-data frames
+
+Algo que tiene que saber es que cuando se genera un sub-data frame de un frame, ese heredará los tipos del data frame, por ejemplo:
+```{r comment=NA}
+gender <- c("H", "M", "M", "M", "H")
+age <- c(23, 45, 20, 30, 18)
+family <- c(2, 3, 4, 2, 5)
+
+#Construir el data frame
+df5 <- data.frame(genero = gender, edad = age, familia = family, stringsAsFactors = TRUE)
+
+#Creando el sub-data frame
+df_m <- df5[df5$genero == "M", ]
+df_m
+str(df_m)
+```
+
+El ejemplo anterior se crea un sub-data frame donde el genero sólo tiene mujeres, pero cuando miro su estructura se puede observar que la opción de hombres sigue estando en la estructura del factor. Para solucionar eso vamos hacer uso de algunas funciones que se describirán abajo para cada caso.
+
+# Tidyverse
+Es una librería que facilita muchisimo el uso de filtrado de los datos.
+
+* **droplevels(DataFrame)**: para borrar los niveles sobrantes de todos los factores, ya que las columnas que son factores heredan en los sub-data frames todos los niveles del factor original, aunque no aparezcan en el trozo que hemos extraído.
+
+* **select(DataFrame, parámetros)**: para especificar que queremos extraer de un data frame:
+
+  * **starts_with("x")**: extrae del data frame las variables cuyo nombre empieza con la palabra "x".
+  
+  * **ends_with("x")**: extrae del data frame las variables cuyo nombre termina con la palabra "x".
+  
+  * **contains_with("x")**: extrae del data frame las variables cuyo nombre contiene la palabra "x".
+  
+  * Se necesita el paquete **dplyr** o mejor aún **tidyverse**
+  
+Del ejemplo anterior para solucionar el problema de heredar variables que no estan siendo utilizadas en el factor.
+```{r comment=NA}
+df_m <- droplevels(df_m)
+df_m
+str(df_m)
+```
+
+Como se observa, ahora sólo tiene mujeres dentro del factor.
+
+Para utilizar **tidyverse** hay que instalarlo y despues cargarlo.
+
+Para instalar:
+```{r comment=NA}
+# install.packages("tidyverse", dependencies = T)
+
+```
+Para cargar la librería:
+```{r comment=NA}
+library(tidyverse)
+```
+
