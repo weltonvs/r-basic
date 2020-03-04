@@ -251,6 +251,7 @@ Es una librería que facilita muchisimo el uso de filtrado de los datos.
   
   * Se necesita el paquete **dplyr** o mejor aún **tidyverse**
   
+
 Del ejemplo anterior para solucionar el problema de heredar variables que no estan siendo utilizadas en el factor.
 ```{r comment=NA}
 df_m <- droplevels(df_m)
@@ -264,7 +265,7 @@ Para utilizar **tidyverse** hay que instalarlo y despues cargarlo.
 
 Para instalar:
 ```{r comment=NA}
-# install.packages("tidyverse", dependencies = T)
+#install.packages("tidyverse", dependencies = T)
 
 ```
 Para cargar la librería:
@@ -272,3 +273,47 @@ Para cargar la librería:
 library(tidyverse)
 ```
 
+Ejemplo del uso de **tidverse**
+```{r comment=NA}
+library(tidyverse)
+iris_petal <- select(iris, starts_with("Petal"))
+head(iris_petal)
+```
+
+# Subset de `R`
+  
+* **subset(DataFrame, condición, select=columnas**: para extraer del data frame las filas que cumplen la condición y las columnas especificadas.
+
+  * Si queremos todas las filas, no hay que especificar ninguna condición.
+  
+  * Si queremos todas las columnas, no hace falta especificar el prámetro **select**
+  
+  * Las variables en la condición se especifican con su nombre, sin añadir antes el nombre del data frame.
+  
+```{r comment=NA}
+subset(iris, Species == "setosa") -> setosa
+head(setosa)
+str(setosa)
+```
+Como ha generado tres niveles y solo necesitamos de uno.
+```{r}
+setosa <- droplevels(setosa)
+str(setosa)
+setosa
+```
+
+Hay un detalle que tiene que tener tambien en cuenta son los nombres de las columnas, por ejemplo:
+```{r comment=NA}
+subset(iris, Species == "versicolor") -> versicolor
+head(versicolor)
+
+```
+
+Se observa que los nombres de las filas empiezan en 51 y los más lógico sería empezar en 1. Para solucionar eso hay que cambiar los nombres de la filas.
+
+```{r comment=NA}
+rownames(versicolor) <- 1:nrow(versicolor)
+head(versicolor)
+```
+
+Ahor si los nombres de las filas estan de acuerdo con datos de un sub-data frame extraido.
