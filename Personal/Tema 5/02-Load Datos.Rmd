@@ -1,0 +1,452 @@
+---
+title: "Lectura de Datos desde un fichero"
+author: "Welton Vieira dos Santos"
+date: "28/2/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Leyendo tablas de datos
+
+* **read.table()**: para definir un data frame a partir de una tabla de datos contenida en un fichero
+
+  * Este fichero puede estar guardado en nuestro ordenador o bien podemos conocer su URL. Sea cual sea el caso, se aplica la función al nombre del fichero o la dirección entre comillas
+  
+## Carga de ficheros local
+
+Como ejemplo, vamos a cargar un fichero de datos llamado _bulls.dat_ que se encuentra en la carpeta _datos_ de ese ambiente de trabajo.
+
+```{r comment=NA}
+#Cargar la tabla del fichero bulls.dat a la variable datos
+datos <- read.table("../../data/bulls.dat")
+
+#Para visualizar el contenido de la variable datos
+head(datos, 10)#Las 10 primeras filas
+
+tail(datos, 10)#Las 10 últimas filas
+
+
+```
+## Parámetros de la función read.table()
+
+* **header = TRUE**: para indicar si la tabla que importamos tiene una primera fila con los nombres de las columnas. El valor por defecto es **FALSE**
+
+* **col.names = c(...)**: para especificar el nombre de las columnas. No olvidar que cada nombre debe ir entre comillas.
+
+* **sep**: para especificar las separaciones entre columnas en el fichero (si no es un espacio en blanco). Si es así, hay que introducir el parámetro pertinente entre comillas. Para verificar los tipos de separación que proporciona `R` utilize la función **?read.tables**
+
+* **dec**: para especificar el signo que separa la parte entera de la decimal (si no es un punto. Si es así, hay que introducir el parámetro pertinente entre comillas)
+
+
+```{r comment=NA}
+df <- read.table("../../data/bulls.dat", 
+                 header = FALSE,
+                 col.names = c("breed", "sale_price", "shoulder", 
+                               "fat_free", "percent_ff", "frame_scale",
+                               "back_fat", "sale_height", "sale_weight"))
+names(df)
+```
+
+Para verificar que los datos están bien cargados, utilizar la función para ver la estructura del data frame
+```{r comment=NA}
+str(df)
+```
+
+* **stringsAsFactor**: para prohibir la transformación de las columnas de palabras en factores debemos usar **stringsAsFactors=FALSE**(ya que por defecto, `R` realiza dicha transformación)
+
+* Para importar un fichero de una página web segura(cuyo url empiece con https), no podemos entrar directamente la dirección en **read.table()**; una solución es instalar y cargar el paquete **_RCurl_** y entonces usar la instrucción **read.table(textConnection(getURL("url ")), ...).
+
+Ejemplos de Factores en un DF:
+```{r comment=NA}
+df3 <- read.table("https://maitra.public.iastate.edu/stat501/datasets/olive.dat")
+str(df3)
+```
+
+Como se puede observar, según la base de datos _olive.dat_ al cargar en `R` hay varias columnas de tipo factors. Si no quiere trabajar con factors, basta poner el argumento **stringsAsFactors=FALSE** para solucionar ese incoveniente.
+```{r comment=NA}
+df3 <- read.table("https://maitra.public.iastate.edu/stat501/datasets/olive.dat", stringsAsFactors = FALSE)
+str(df3)
+```
+
+Se observa que las columnas ya no son factores. Tambien esa base de datos trae el nombre de las cabeceras. Entonces se puede decir que las importe correctamente.
+```{r comment=NA}
+df3 <- read.table("https://maitra.public.iastate.edu/stat501/datasets/olive.dat", stringsAsFactors = FALSE, header = TRUE)
+str(df3)
+```
+Ahora perfecto.
+
+Hasta ahora hemos utilizado la función **read.table()**, que es muy básica y sólo carga tablas. Para cargar otros tipos de archivos con extensión _.csv_, _.xls_, _.xlsx_, _.mtb_ y _.spss_ hay otras funciones más específicas.
+
+## Leyendo diferentes tipos de fichero
+
+* **read.csv()**: para importar ficheros en formato CSV.
+
+* **read.xls()** o **read.xlsxx()**: para importar hojas de calculos tipo Excel u OpenOffice en formato XLS o XLSX, respectivamente. Se necesita el paquete **_xlsx_**.
+
+* **read.mtb()**: para importar tablas de datos Minitab.Se necesita el paquete **_foreign_**. 
+
+* **read.spss()**: para importar tablas de datos SPSS.Se necesita el paquete **_foreign_**.
+
+Los formatos _.mtb_ y _.spss_ son lenguajes de pago muy utilizados por programas estadísticos de pago muy utilizados anteriormente hasta que salio `R`.
+
+Es preferible utilizar para guardar las tablas de datos el formato _.csv_ porque se trata de un texto plano y no posee una estructura compleja como las otras anteriores comentadas y además evita muchísimos errores a la hora de cargar esos tipos de archivos.
+
+Para mas detalles mirar la ayuda de `R`:
+```{r comment=NA}
+help.search("read")
+```
+
+# Guardar un Data Frame (DF)
+
+Guardar en formato txt
+```{r}
+write.table(df3, file = "oliva.txt", dec = ".")
+```
+
+Guardar en formato csv
+```{r}
+write.csv(df3, file = "oliva.csv", sep = ",")
+```
+
+**Importante:** Lo más aconsejable es al cargar de un fichero bajado de internet, es bueno guardarlo en un formato .text o .csv y despues tratarlo para que se pueda trabajar sin problemas.
+```{r comment=NA}
+df4 <- read.table("oliva.txt", dec = ".", header = TRUE)
+head(df4)
+```
+
+
+# Construyendo data frames
+Se puede construir un data frame a partir de una vector de datos o varible.
+
+* **data.frame(vector_1, ..., vector_n)**: para construir un data frame a partir de vectores introducidos en el orden en el que queremos disponer las columnas de la tabla
+
+  * `R` considera del mismo tipo de datos todas las entradas de una columna de un data frame.
+  
+  * Las variables tomarán los nombres de los vectores. Estos nombres se pueden especificar en el argumento de **_data_frame_** entrando una construcción de la forma **nombre_variable=vector**
+  
+  * **rownames**: para especificar los identificadores de las filas.
+  
+  * Tambíen en esta función podemos hacer uso del parámetro **stringAsFactors** para evitar la transformación de las columnas de tipo palabra en factores.
+  
+* **fix(DataFrame)**: para crear / editar un data frame con el edidor de datos.
+
+* **names(DataFrame)**: para cambiar los nombres de las variables.
+
+* **rownames(DataFrame)**: para modificar los identificadores de las filas. Han de ser todos diferentes.
+
+* **dimnames(DataFrame) = list(vec_nom_fil, vec_nom_col)**: para modificar el nombre de las filas y de las columnas simultáneamente
+
+* **DataFrame[num_fila, ] = c(...)**: para añadir una fila a un data frame:
+
+  * Las filas que añadimos de esta manera son vectores, y por tanto sus entradas han de ser todas del mismo tipo.
+  
+  * Si no añadimos las filas inmediatamente siguientes a la última fila del data frame, los valores entre su última fila y las que añadimos quedarán no definidos y aparecerán como NA
+  
+  * Para evitar el problema anterior, vale más usar la función **_rbind()_** para concatenar el data frame con al nueva fila.
+
+Ejemplos:
+```{r comment=NA}
+#Vectores de notas de asignaturas
+Algebra <- c(1,2,0,5,4,6,7,5,5,8)
+Analysis <- c(3,3,2,7,9,5,6,8,5,6)
+Statistics <- c(4,5,4,8,8,9,6,7,9,10)
+
+#Contruir el data frame
+grades <- data.frame(Alg = Algebra, An = Analysis, Stat = Statistics)
+str(grades)
+```
+
+```{r comment=NA}
+gender <- c("H", "M", "M", "M", "H")
+age <- c(23, 45, 20, 30, 18)
+family <- c(2, 3, 4, 2, 5)
+
+#Construir el data frame
+df5 <- data.frame(genero = gender, edad = age, familia = family, stringsAsFactors = TRUE)
+df5
+str(df5)
+```
+
+Para asignar nombres en las filas:
+```{r comment=NA}
+row.names(df5) <- c("P1", "P2", "P3", "P4", "P5")
+df5
+```
+
+Para modificar el nombre de las lineas y columnas a la vez:
+```{r comment=NA}
+dimnames(df5) <- list(
+  c("Antonio", "Ricardo", "JuanGabriel", "Maria", "Margarita"),
+  c("Sexo", "Años", "MiembrosFamilia")
+)
+
+df5
+```
+
+Ejemplo del data frame grades creado anteriormente, vamos añadir una nueva columna de datos
+```{r comment=NA}
+Calculus <- c(5,4,6,2,1,0,7,8,9,6)
+grades2 <- cbind(grades, Calculus)
+head(grades2)
+```
+Se puede tambien acceder a las columnas directamente con el **$**:
+```{r comment=NA}
+#Convertir la columna Sexo en caracter
+df5$Sexo = as.character(df5$Sexo)
+df5
+```
+Se pasa de factor a caracter.
+
+Se puede tambien añadir una nueva columna con esa tecnica
+```{r comment=NA}
+df5$Ingresos = c(1000,12000,15000,12000,20000)
+df5
+```
+
+
+# Cambiando los tipos de datos
+
+Muy conocido como _casting_ en otros lenguajes. Que es nada más o nada menos que cambiar un tipo de datos a otro tipo de datos.
+
+* **as.character**: para transformar todos los datos de un objeto en palabras(strigs).
+
+* **as.integer**: para transformar todos los datos de un objeto a números enteros.
+
+* **as.numeric**: para transformar todos los datos de un objeto a números reales.
+
+# Más sobre sub-data frames
+
+Algo que tiene que saber es que cuando se genera un sub-data frame de un frame, ese heredará los tipos del data frame, por ejemplo:
+```{r comment=NA}
+gender <- c("H", "M", "M", "M", "H")
+age <- c(23, 45, 20, 30, 18)
+family <- c(2, 3, 4, 2, 5)
+
+#Construir el data frame
+df5 <- data.frame(genero = gender, edad = age, familia = family, stringsAsFactors = TRUE)
+
+#Creando el sub-data frame
+df_m <- df5[df5$genero == "M", ]
+df_m
+str(df_m)
+```
+
+El ejemplo anterior se crea un sub-data frame donde el genero sólo tiene mujeres, pero cuando miro su estructura se puede observar que la opción de hombres sigue estando en la estructura del factor. Para solucionar eso vamos hacer uso de algunas funciones que se describirán abajo para cada caso.
+
+# Tidyverse
+Es una librería que facilita muchisimo el uso de filtrado de los datos.
+
+* **droplevels(DataFrame)**: para borrar los niveles sobrantes de todos los factores, ya que las columnas que son factores heredan en los sub-data frames todos los niveles del factor original, aunque no aparezcan en el trozo que hemos extraído.
+
+* **select(DataFrame, parámetros)**: para especificar que queremos extraer de un data frame:
+
+  * **starts_with("x")**: extrae del data frame las variables cuyo nombre empieza con la palabra "x".
+  
+  * **ends_with("x")**: extrae del data frame las variables cuyo nombre termina con la palabra "x".
+  
+  * **contains_with("x")**: extrae del data frame las variables cuyo nombre contiene la palabra "x".
+  
+  * Se necesita el paquete **dplyr** o mejor aún **tidyverse**
+  
+
+Del ejemplo anterior para solucionar el problema de heredar variables que no estan siendo utilizadas en el factor.
+```{r comment=NA}
+df_m <- droplevels(df_m)
+df_m
+str(df_m)
+```
+
+Como se observa, ahora sólo tiene mujeres dentro del factor.
+
+Para utilizar **tidyverse** hay que instalarlo y despues cargarlo.
+
+Para instalar:
+```{r comment=NA}
+#install.packages("tidyverse", dependencies = T)
+
+```
+Para cargar la librería:
+```{r comment=NA}
+library(tidyverse)
+```
+
+Ejemplo del uso de **tidverse**
+```{r comment=NA}
+library(tidyverse)
+iris_petal <- select(iris, starts_with("Petal"))
+head(iris_petal)
+```
+
+# Subset de `R`
+  
+* **subset(DataFrame, condición, select=columnas**: para extraer del data frame las filas que cumplen la condición y las columnas especificadas.
+
+  * Si queremos todas las filas, no hay que especificar ninguna condición.
+  
+  * Si queremos todas las columnas, no hace falta especificar el prámetro **select**
+  
+  * Las variables en la condición se especifican con su nombre, sin añadir antes el nombre del data frame.
+  
+```{r comment=NA}
+subset(iris, Species == "setosa") -> setosa
+head(setosa)
+str(setosa)
+```
+Como ha generado tres niveles y solo necesitamos de uno.
+```{r comment=NA}
+setosa <- droplevels(setosa)
+str(setosa)
+setosa
+```
+
+Hay un detalle que tiene que tener tambien en cuenta son los nombres de las columnas, por ejemplo:
+```{r comment=NA}
+subset(iris, Species == "versicolor") -> versicolor
+head(versicolor)
+
+```
+
+Se observa que los nombres de las filas empiezan en 51 y los más lógico sería empezar en 1. Para solucionar eso hay que cambiar los nombres de la filas.
+
+```{r comment=NA}
+rownames(versicolor) <- 1:nrow(versicolor)
+head(versicolor)
+```
+
+Ahora si los nombres de las filas estan de acuerdo con datos de un sub-data frame extraido.
+
+
+# Aplicando funciones a data frames
+
+En `R` se puede sustituir los bucles for por las funciones específicas para interar con los datos de un data frame.
+
+* **sapply(DataFrame, función)**: para aplicar una función a todas las columnas de un data frame en un solo paso.
+
+  * **na.rm = TRUE**: para evitar que el valor que devuelva la función para las columnas que contengan algún NA sea NA.
+  
+* **aggregate(variables~factors, data = DataFrame, FUN = función**: para una función a variables de un data frame clasificadas por los niveles de un, o más de un, factor
+
+  * Si queremos aplicar la función a más de una variable, tenemos que agruparlas con **cbind**.
+  
+  * Si queremos separar las variables mediante más de un factor, tenemos que agruparlos con signos +.
+  
+Ejemplos:
+
+```{r comment=NA}
+str(iris)
+sapply(subset(iris, select = 1:4), mean)
+```
+
+Ejemplo de obtener la suma de todas las columnas
+```{r comment=NA}
+
+sapply(iris[, 1:4], sum)
+```
+
+Aplicando una función personalizada
+```{r comment=NA}
+# Creando una función que hace la suma cuadrática.
+f <- function(x){
+  sqrt(sum(x^2))
+}
+
+# Aplicando la función con sapply en el data frame
+sapply(iris[, 1:4], f)
+
+```
+
+Es muy importante tratar las celdas vacias o con datos nulos del data frame, ya que al utilizar determinadas funciones puede arrojar resultados inesperados, por ejemplo:
+```{r comment=NA}
+# Creando un data frame para prueba de NA
+df = data.frame(C1 = c(1,2,NA,4), C2 = c(5,NA,2,3))
+df
+```
+
+El ejemplo anterior se crea un data frame que contiene NA´s. Al intentar calcular la media de los datos por ejemplo, el resultado no es lo que se esperaba.
+```{r comment=NA}
+sapply(df,mean)
+```
+
+Devuelve como resultado NA´s tambien. Para solucionar ese incoveniente hay que utilizar un parámetro _na.rm=True_ de la función sapply que trate ese tipo de problema.
+```{r}
+sapply(df, mean, na.rm = TRUE)
+```
+
+Se observa que ya se obtiene la media deseada.
+
+Para aplicar una función en una columna basado en otra se utiliza la función aggregate. Por ejemplo, calcular la media de la columna Cepal según su Especie.
+```{r comment=NA}
+aggregate(Sepal.Length~Species, data = iris, FUN = mean, na.rm = TRUE)
+```
+
+Se quiero más de un atributo, por ejemplo, calcular la media de los atributos Sepal y Petal en función de las Especies.
+```{r comment=NA}
+aggregate(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris, FUN = mean, na.rm = TRUE)
+```
+
+Convertir columnas en factor para poner de ejemplo el uso de agrupar varios factores en función de una columna
+a
+```{r comment=NA}
+head(mtcars)
+str(mtcars)
+```
+
+El data fram _mtcars_ tiene algunos atributos que debería ser factores. 
+```{r comment=NA}
+#Pasar a Factor el atributo cilidro
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+#Pasar a Factor el atributo marcha
+mtcars$gear <- as.factor(mtcars$gear)
+
+#Pasar a Factor el atributo carburadores
+mtcars$carb <- as.factor(mtcars$carb)
+
+#Mirando la nueva estructura
+str(mtcars)
+```
+
+Aplicando la función media en el atributo mpg en función de los atributos cyl, gear y carb.
+```{r comment=NA}
+aggregate(mpg~cyl+gear+carb, data = mtcars,  FUN = mean, na.rm = TRUE)
+```
+
+# Variables globales
+A veces se quiere referir a una variable de un data frame de forma global, es decir, para ahorrar estar escribiendo el nombre completo de una variable de un data frame constantemente se puede hacer una abreviación y acceder directamente por un alias creado previamente.
+
+* **attach(DataFrame)**: para hacer que `R` entienda sus vavibles globales y que las podamos usar por su nombre, sin necesidad de añadir delante el nombre del data frame y el símbolo $
+
+  Si ya hubiera existido una variable definida con el mismo nombre que una variable del data frame al que aplicamos **attach**, hubiéramos obtenido un mensaje de error al ejecutarse esta función y no se hubiera reescrito la variable global original.
+  
+* **detach(DataFrame)**: para devolver la situación original, eliminando del entorno global las variables del data frame.
+
+Ejemplo: Si quiero acceder a la varible mpg del data frame mtcars, `R` no me permitirá hacerlo.
+```{r comment=NA}
+mpg
+```
+
+para acceder tendo que escribir la firma completa
+```{r comment=NA}
+mtcars$mpg
+```
+
+Para avitar tener que escribir la firma completa hago uso de la función **attach**, así defino una varible global para eso.
+```{r comment=NA}
+#Definiendo mtcars como varible global
+attach(mtcars)
+
+#Accediendo sus atributos diretamente
+mpg
+```
+
+Eso es muy cómodo, pero si hay otra variable con el mismo nombre nos dará error.
+
+Para desvingular el data frame de una variable global, basta llamar la función **detach**.
+```{r comment=NA}
+#Desvinculando mtcars de la varible global
+detach(mtcars)
+```
+De esa forma mtcars se desvincula.
