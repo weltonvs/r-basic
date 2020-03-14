@@ -66,13 +66,13 @@ str(df3)
 ```
 
 Como se puede observar, según la base de datos _olive.dat_ al cargar en `R` hay varias columnas de tipo factors. Si no quiere trabajar con factors, basta poner el argumento **stringsAsFactors=FALSE** para solucionar ese incoveniente.
-```{r}
+```{r comment=NA}
 df3 <- read.table("https://maitra.public.iastate.edu/stat501/datasets/olive.dat", stringsAsFactors = FALSE)
 str(df3)
 ```
 
 Se observa que las columnas ya no son factores. Tambien esa base de datos trae el nombre de las cabeceras. Entonces se puede decir que las importe correctamente.
-```{r}
+```{r comment=NA}
 df3 <- read.table("https://maitra.public.iastate.edu/stat501/datasets/olive.dat", stringsAsFactors = FALSE, header = TRUE)
 str(df3)
 ```
@@ -296,7 +296,7 @@ head(setosa)
 str(setosa)
 ```
 Como ha generado tres niveles y solo necesitamos de uno.
-```{r}
+```{r comment=NA}
 setosa <- droplevels(setosa)
 str(setosa)
 setosa
@@ -316,4 +316,137 @@ rownames(versicolor) <- 1:nrow(versicolor)
 head(versicolor)
 ```
 
-Ahor si los nombres de las filas estan de acuerdo con datos de un sub-data frame extraido.
+Ahora si los nombres de las filas estan de acuerdo con datos de un sub-data frame extraido.
+
+
+# Aplicando funciones a data frames
+
+En `R` se puede sustituir los bucles for por las funciones específicas para interar con los datos de un data frame.
+
+* **sapply(DataFrame, función)**: para aplicar una función a todas las columnas de un data frame en un solo paso.
+
+  * **na.rm = TRUE**: para evitar que el valor que devuelva la función para las columnas que contengan algún NA sea NA.
+  
+* **aggregate(variables~factors, data = DataFrame, FUN = función**: para una función a variables de un data frame clasificadas por los niveles de un, o más de un, factor
+
+  * Si queremos aplicar la función a más de una variable, tenemos que agruparlas con **cbind**.
+  
+  * Si queremos separar las variables mediante más de un factor, tenemos que agruparlos con signos +.
+  
+Ejemplos:
+
+```{r comment=NA}
+str(iris)
+sapply(subset(iris, select = 1:4), mean)
+```
+
+Ejemplo de obtener la suma de todas las columnas
+```{r comment=NA}
+
+sapply(iris[, 1:4], sum)
+```
+
+Aplicando una función personalizada
+```{r comment=NA}
+# Creando una función que hace la suma cuadrática.
+f <- function(x){
+  sqrt(sum(x^2))
+}
+
+# Aplicando la función con sapply en el data frame
+sapply(iris[, 1:4], f)
+
+```
+
+Es muy importante tratar las celdas vacias o con datos nulos del data frame, ya que al utilizar determinadas funciones puede arrojar resultados inesperados, por ejemplo:
+```{r comment=NA}
+# Creando un data frame para prueba de NA
+df = data.frame(C1 = c(1,2,NA,4), C2 = c(5,NA,2,3))
+df
+```
+
+El ejemplo anterior se crea un data frame que contiene NA´s. Al intentar calcular la media de los datos por ejemplo, el resultado no es lo que se esperaba.
+```{r comment=NA}
+sapply(df,mean)
+```
+
+Devuelve como resultado NA´s tambien. Para solucionar ese incoveniente hay que utilizar un parámetro _na.rm=True_ de la función sapply que trate ese tipo de problema.
+```{r}
+sapply(df, mean, na.rm = TRUE)
+```
+
+Se observa que ya se obtiene la media deseada.
+
+Para aplicar una función en una columna basado en otra se utiliza la función aggregate. Por ejemplo, calcular la media de la columna Cepal según su Especie.
+```{r comment=NA}
+aggregate(Sepal.Length~Species, data = iris, FUN = mean, na.rm = TRUE)
+```
+
+Se quiero más de un atributo, por ejemplo, calcular la media de los atributos Sepal y Petal en función de las Especies.
+```{r comment=NA}
+aggregate(cbind(Sepal.Length, Petal.Length) ~ Species, data = iris, FUN = mean, na.rm = TRUE)
+```
+
+Convertir columnas en factor para poner de ejemplo el uso de agrupar varios factores en función de una columna
+a
+```{r comment=NA}
+head(mtcars)
+str(mtcars)
+```
+
+El data fram _mtcars_ tiene algunos atributos que debería ser factores. 
+```{r comment=NA}
+#Pasar a Factor el atributo cilidro
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+#Pasar a Factor el atributo marcha
+mtcars$gear <- as.factor(mtcars$gear)
+
+#Pasar a Factor el atributo carburadores
+mtcars$carb <- as.factor(mtcars$carb)
+
+#Mirando la nueva estructura
+str(mtcars)
+```
+
+Aplicando la función media en el atributo mpg en función de los atributos cyl, gear y carb.
+```{r comment=NA}
+aggregate(mpg~cyl+gear+carb, data = mtcars,  FUN = mean, na.rm = TRUE)
+```
+
+# Variables globales
+A veces se quiere referir a una variable de un data frame de forma global, es decir, para ahorrar estar escribiendo el nombre completo de una variable de un data frame constantemente se puede hacer una abreviación y acceder directamente por un alias creado previamente.
+
+* **attach(DataFrame)**: para hacer que `R` entienda sus vavibles globales y que las podamos usar por su nombre, sin necesidad de añadir delante el nombre del data frame y el símbolo $
+
+  Si ya hubiera existido una variable definida con el mismo nombre que una variable del data frame al que aplicamos **attach**, hubiéramos obtenido un mensaje de error al ejecutarse esta función y no se hubiera reescrito la variable global original.
+  
+* **detach(DataFrame)**: para devolver la situación original, eliminando del entorno global las variables del data frame.
+
+Ejemplo: Si quiero acceder a la varible mpg del data frame mtcars, `R` no me permitirá hacerlo.
+```{r comment=NA}
+mpg
+```
+
+para acceder tendo que escribir la firma completa
+```{r comment=NA}
+mtcars$mpg
+```
+
+Para avitar tener que escribir la firma completa hago uso de la función **attach**, así defino una varible global para eso.
+```{r comment=NA}
+#Definiendo mtcars como varible global
+attach(mtcars)
+
+#Accediendo sus atributos diretamente
+mpg
+```
+
+Eso es muy cómodo, pero si hay otra variable con el mismo nombre nos dará error.
+
+Para desvingular el data frame de una variable global, basta llamar la función **detach**.
+```{r comment=NA}
+#Desvinculando mtcars de la varible global
+detach(mtcars)
+```
+De esa forma mtcars se desvincula.
